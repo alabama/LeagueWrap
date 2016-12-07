@@ -2,7 +2,9 @@
 
 namespace LeagueWrap\Api;
 
+use GuzzleHttp\Promise\Promise;
 use LeagueWrap\Api;
+use LeagueWrap\AsyncClientInterface;
 use LeagueWrap\Cache;
 use LeagueWrap\CacheInterface;
 use LeagueWrap\ClientInterface;
@@ -212,41 +214,91 @@ abstract class AbstractApi
         return $this;
     }
 
+    protected function requestAsync($path, $params = [], $static = false, $isVersioned = true)
+    {
+        if (!$this->client instanceof AsyncClientInterface) {
+            // @TODO: Refactor into an option on the Api class
+            throw new \LogicException('Cannot use async request without async client');
+        }
+
+        $this->preRequestSetup();
+
+        // check if we have hit the limit
+        if (!$static && !$this->collection->hitLimits($this->region->getRegion())) {
+            throw new LimitReachedException('You have hit the request limit in your collection.');
+        }
+
+        return $this->handleResponseCaching(function($static, $uri, $params, $cacheKey) {
+            ++$this->requests;
+
+            return $this->client->requestAsync($uri, $params)->then(function (Response $response) use ($cacheKey) {
+                $this->checkResponseErrors($response);
+
+                if ($cacheKey) {
+                    $this->cache->set($cacheKey, $response, $this->seconds);
+                }
+
+                return $response;
+            });
+        }, $path, $params, $static, $isVersioned)->then(function ($response) {
+            return json_decode($response, true);
+        });
+    }
+
     /**
      * Wraps the request of the api in this method.
      *
      * @param string $path
      * @param array  $params
      * @param bool   $static
-     * @param bool   $isVersionized
+     * @param bool   $isVersioned
      *
      * @throws CacheNotFoundException
      * @throws HttpClientError
      * @throws HttpServerError
      * @throws LimitReachedException
      * @throws RegionException
-     * @throws string
      *
      * @return mixed
      */
-    protected function request($path, $params = [], $static = false, $isVersionized = true)
+    protected function request($path, $params = [], $static = false, $isVersioned = true)
     {
-        // get and validate the region
-        if ($this->region->isLocked($this->permittedRegions)) {
-            throw new RegionException('The region "'.$this->region->getRegion().'" is not permited to query this API.');
-        }
+        $this->preRequestSetup();
 
-        $this->client->baseUrl($this->getDomain());
+        $content = $this->handleResponseCaching(function($static, $uri, $params) {
+            return $this->clientRequest($static, $uri, $params);
+        }, $path, $params, $static, $isVersioned);
 
-        if ($this->timeout > 0) {
-            $this->client->setTimeout($this->timeout);
-        }
+        // decode the content
+        return json_decode($content, true);
+    }
 
+    /**
+     * Method that wraps the caching logic and enables the usage of sync or async client
+     *
+     * @param callable $requestFunction
+     * @param          $path
+     * @param          $params
+     * @param          $static
+     * @param          $isVersioned
+     * @param bool     $returnPromise
+     *
+     * @throws CacheNotFoundException
+     * @throws HttpClientError
+     * @throws HttpServerError
+     *
+     * @return null|string|Promise
+     */
+    protected function handleResponseCaching(
+        callable $requestFunction, $path, $params, $static, $isVersioned, $returnPromise = false
+    )
+    {
         // add the key to the param list
         $params['api_key'] = $this->key;
 
-        $uri = ($isVersionized) ? $this->getVersion().'/'.$path : $path;
+        $uri = ($isVersioned) ? $this->getVersion().'/'.$path : $path;
 
+        $content = null;
 
         // check cache
         if ($this->cache instanceof CacheInterface) {
@@ -263,9 +315,13 @@ abstract class AbstractApi
                 throw new CacheNotFoundException("A cache item for '$uri?".http_build_query($params)."' was not found!");
             } else {
                 try {
-                    $content = $this->clientRequest($static, $uri, $params);
-                    // we want to cache this response
-                    $this->cache->set($cacheKey, $content, $this->seconds);
+                    if (!$returnPromise) {
+                        $content = $requestFunction($static, $uri, $params, $cacheKey);
+                        // we want to cache this response
+                        $this->cache->set($cacheKey, $content, $this->seconds);
+                    } else {
+                        return $requestFunction($static, $uri, $params, $cacheKey);
+                    }
                 } catch (HttpClientError $clientError) {
                     if ($this->cacheClientError) {
                         // cache client errors
@@ -285,11 +341,14 @@ abstract class AbstractApi
         } elseif ($this->cacheOnly) {
             throw new CacheNotFoundException('The cache is not enabled but we were told to use only the cache!');
         } else {
-            $content = $this->clientRequest($static, $uri, $params);
+            if (!$returnPromise) {
+                $content = $requestFunction($static, $uri, $params, false);
+            } else {
+                return $requestFunction($static, $uri, $params, false);
+            }
         }
 
-        // decode the content
-        return json_decode($content, true);
+        return $content;
     }
 
     /**
@@ -503,6 +562,20 @@ abstract class AbstractApi
             if (class_exists($class) && is_subclass_of($class, ResponseException::class)) {
                 throw $class::withResponse($message, $response);
             }
+        }
+    }
+
+    protected function preRequestSetup()
+    {
+// get and validate the region
+        if ($this->region->isLocked($this->permittedRegions)) {
+            throw new RegionException('The region "'.$this->region->getRegion().'" is not permited to query this API.');
+        }
+
+        $this->client->baseUrl($this->getDomain());
+
+        if ($this->timeout > 0) {
+            $this->client->setTimeout($this->timeout);
         }
     }
 }

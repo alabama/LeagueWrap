@@ -3,10 +3,13 @@
 namespace LeagueWrap;
 
 use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Psr7\Stream;
 use LeagueWrap\Exception\BaseUrlException;
+use Psr\Http\Message\ResponseInterface;
 
-class Client implements ClientInterface
+class Client implements ClientInterface, AsyncClientInterface
 {
     protected $guzzle;
     protected $timeout = 0;
@@ -100,5 +103,26 @@ class Client implements ClientInterface
         $response = new Response($content, $code, $headers);
 
         return $response;
+    }
+
+    public function requestAsync($path, array $params = [])
+    {
+        if (!$this->guzzle instanceof Guzzle) {
+            throw new BaseUrlException('BaseUrl was never set. Please call baseUrl($url) since Client does not exist.');
+        }
+
+        return $this->guzzle->getAsync($path.'?'.http_build_query($params), [
+            'timeout' => $this->timeout,
+            'http_errors' => false,
+        ])->then(function(ResponseInterface $response) {
+            $wrapResponse = new Response(
+                (string) $response->getBody(),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            );
+            return $wrapResponse;
+        }, function(RequestException $e) {
+            return $e;
+        });
     }
 }

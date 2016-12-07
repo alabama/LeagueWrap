@@ -2,8 +2,11 @@
 
 namespace LeagueWrap\Api;
 
+use LeagueWrap\AsyncClientInterface;
+use LeagueWrap\Dto\AbstractDto;
 use LeagueWrap\Dto\PlayerStatsSummaryList;
 use LeagueWrap\Dto\RankedStats;
+use LeagueWrap\Dto\RankedStatsList;
 
 class Stats extends AbstractApi
 {
@@ -101,16 +104,36 @@ class Stats extends AbstractApi
      *
      * @param mixed $identity
      *
-     * @return array
+     * @return array|AbstractDto
      */
     public function ranked($identity)
     {
-        $summonerId = $this->extractId($identity);
-
         $params = [];
         if (!is_null($this->season)) {
             $params['season'] = $this->season;
         }
+
+        // Try to use async client for multiple summoners
+        if (is_array($identity) && $this->client instanceof AsyncClientInterface) {
+            $promises = array_map(function ($id) use ($params) {
+                $summonerId = $this->extractId($id);
+                return $this->requestAsync('stats/by-summoner/'.$summonerId.'/ranked', $params);
+            }, $identity);
+
+            // Wait for all the promises to finish
+            $formatted = [];
+
+            foreach (\GuzzleHttp\Promise\unwrap($promises) as $response) {
+                $stats = $this->attachStaticDataToDto(new RankedStats($response));
+                $this->attachResponse($response['summonerId'], $stats, 'rankedStats');
+                $formatted[$response['summonerId']] = $response;
+            }
+
+            return new RankedStatsList($formatted);
+        }
+
+        $summonerId = $this->extractId($identity);
+
         $info = $this->request('stats/by-summoner/'.$summonerId.'/ranked', $params);
         $stats = $this->attachStaticDataToDto(new RankedStats($info));
 
