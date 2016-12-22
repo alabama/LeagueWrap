@@ -35,12 +35,12 @@ class ItemList extends AbstractListDto
             $info['groups'] = $groups;
         }
         if (isset($info['tree'])) {
-            $tree = [];
+            $trees = [];
             foreach ($info['tree'] as $itemId => $tree) {
                 $itemTreeDto = new ItemTree($tree);
-                $tree[$itemId] = $itemTreeDto;
+                $trees[$itemId] = $itemTreeDto;
             }
-            $info['tree'] = $tree;
+            $info['tree'] = $trees;
         }
 
         parent::__construct($info);
