@@ -124,12 +124,14 @@ class Stats extends AbstractApi
             $formatted = [];
 
             foreach (\GuzzleHttp\Promise\unwrap($promises) as $response) {
-                $stats = $this->attachStaticDataToDto(new RankedStats($response));
-                $this->attachResponse($response['summonerId'], $stats, 'rankedStats');
+                //$stats = $this->attachStaticDataToDto(new RankedStats($response));
+                //$this->attachResponse($response['summonerId'], $stats, 'rankedStats');
                 $formatted[$response['summonerId']] = $response;
             }
 
-            return new RankedStatsList($formatted);
+            $rankedStatsList = $this->attachStaticDataToDto(new RankedStatsList($formatted));
+
+            return $rankedStatsList;
         }
 
         $summonerId = $this->extractId($identity);

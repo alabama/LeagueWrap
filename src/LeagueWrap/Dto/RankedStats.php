@@ -14,8 +14,14 @@ class RankedStats extends AbstractListDto
         if (isset($info['champions'])) {
             $champions = [];
             foreach ($info['champions'] as $key => $champion) {
+                // Note that champion ID 0 represents the combined stats for all champions.
+                if ($champion['id'] == 0) {
+                    $info['combinedStats'] = $champion;
+                }
+
                 $championStats = new ChampionStats($champion);
-                $champions[$key] = $championStats;
+                // Don't transform combined stats into a Dto
+                $champions[$key] = $champion['id'] == 0 ? $champion : $championStats;
             }
             $info['champions'] = $champions;
         }
@@ -32,7 +38,7 @@ class RankedStats extends AbstractListDto
     public function champion($championId)
     {
         if (!isset($this->info['champions'][$championId])) {
-            return;
+            return null;
         }
 
         return $this->info['champions'][$championId];

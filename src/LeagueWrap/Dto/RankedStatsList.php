@@ -6,21 +6,21 @@ namespace LeagueWrap\Dto;
  * List made for multiple RankedStats when calling ranked stats endpoint multiple times
  * (for example for each summoner in current game)
  *
- * @package LeagueWrap\Dto
+ * NOTE: This is not one of Riot's Dtos, it's just a wrapper around multiple RankedStats
  */
-class RankedStatsList extends AbstractListDto
+class RankedStatsList extends AbstractDto
 {
-    protected $listKey = '';
-
     /**
+     * RankedStatsList constructor.
+     *
      * @param array $info
      */
     public function __construct(array $info)
     {
         $dtos = [];
 
-        foreach ($info as $playerId => $rankedStats) {
-            $dtos[$playerId] = new RankedStats($rankedStats);
+        foreach ($info as $summonerId => $rankedStats) {
+            $dtos[$summonerId] = new RankedStats($rankedStats);
         }
 
         parent::__construct($dtos);

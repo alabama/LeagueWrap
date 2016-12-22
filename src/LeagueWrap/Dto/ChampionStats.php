@@ -4,6 +4,12 @@ namespace LeagueWrap\Dto;
 
 class ChampionStats extends AbstractDto
 {
+    use ImportStaticTrait;
+
+    protected $staticFields = [
+        'id' => 'champion',
+    ];
+
     /**
      * @param array $info
      */
