@@ -43,9 +43,10 @@ class Region
     }
 
     /**
-     * v3 domain, see: https://discussion.developer.riotgames.com/articles/652/riot-games-api-v3.html
+     * v3 domains, see: https://discussion.developer.riotgames.com/articles/652/riot-games-api-v3.html
      * https://{platform}.api.riotgames.com/{game}/{service}/{version}/{resource}
      */
+    protected $v3StandardizedDomain = 'https://{platform}.api.riotgames.com/lol/';
     protected $v3PlatformDomain = 'https://{platform}.api.riotgames.com/lol/platform/';
 
     /**
@@ -92,6 +93,14 @@ class Region
     public function getDefaultDomain()
     {
         return sprintf($this->defaultDomain, $this->getRegion(), $this->getRegion());
+    }
+
+    /**
+     * Standardized domain across all v3 endpoints.
+     */
+    public function getStandardizedDomain()
+    {
+        return str_replace('{platform}', strtolower($this->getPlatformId()), $this->v3StandardizedDomain);
     }
 
     /**

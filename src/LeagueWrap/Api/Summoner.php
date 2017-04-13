@@ -24,6 +24,7 @@ class Summoner extends AbstractApi
      * @var array
      */
     protected $versions = [
+        'v3',
         'v1.4',
     ];
 
@@ -70,6 +71,10 @@ class Summoner extends AbstractApi
      */
     public function getDomain()
     {
+        if ($this->getVersion() === 'v3') {
+            return $this->getRegion()->getStandardizedDomain().'summoner/';
+        }
+
         return $this->getRegion()->getDefaultDomain();
     }
 

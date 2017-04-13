@@ -126,7 +126,7 @@ class ChampionMasteryTest extends PHPUnit_Framework_TestCase
             ->andReturn(file_get_contents('tests/Json/summoner.bakasan.json'));
 
         $api = new Api('key', $this->client);
-        $bakasan = $api->summoner()->info('bakasan');
+        $bakasan = $api->summoner()->selectVersion('v1.4')->info('bakasan');
         $api->championMastery()->score($bakasan);
         $this->assertTrue($bakasan->score == 999);
     }
@@ -151,7 +151,7 @@ class ChampionMasteryTest extends PHPUnit_Framework_TestCase
             ->andReturn(file_get_contents('tests/Json/summoner.bakasan.json'));
 
         $api = new Api('key', $this->client);
-        $bakasan = $api->summoner()->info('bakasan');
+        $bakasan = $api->summoner()->selectVersion('v1.4')->info('bakasan');
         $api->championMastery()->champions($bakasan);
         $this->assertTrue($bakasan->championmastery instanceof \LeagueWrap\Dto\ChampionMasteryList);
     }

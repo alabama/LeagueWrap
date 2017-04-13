@@ -110,8 +110,8 @@ class LimitTest extends PHPUnit_Framework_TestCase
         LeagueWrap\StaticApi::mount();
         Api::setKey('key', $this->client);
         Api::limit(1, 10, 'na', $this->limit1);
-        Summoner::info('bakasan');
-        Summoner::info('bakasan');
+        Summoner::selectVersion('v1.4')->info('bakasan');
+        Summoner::selectVersion('v1.4')->info('bakasan');
     }
 
     /**

@@ -61,7 +61,7 @@ class ApiLeagueTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.gamerxz.json'));
 
         $api = new Api('key', $this->client);
-        $gamerxz = $api->summoner()->info('GamerXz');
+        $gamerxz = $api->summoner()->selectVersion('v1.4')->info('GamerXz');
         $api->league()->league($gamerxz);
         $this->assertTrue($gamerxz->league('GamerXz') instanceof LeagueWrap\Dto\League);
     }
@@ -82,7 +82,7 @@ class ApiLeagueTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.gamerxz.json'));
 
         $api = new Api('key', $this->client);
-        $gamerxz = $api->summoner()->info('GamerXz');
+        $gamerxz = $api->summoner()->selectVersion('v1.4')->info('GamerXz');
         $api->league()->league($gamerxz);
         $first = $gamerxz->league('GamerXz')->entry(19382070);
         $this->assertEquals('Waraight', $first->playerOrTeamName);
@@ -120,7 +120,7 @@ class ApiLeagueTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.gamerxz.json'));
 
         $api = new Api('key', $this->client);
-        $gamerxz = $api->summoner()->info('GamerXz');
+        $gamerxz = $api->summoner()->selectVersion('v1.4')->info('GamerXz');
         $api->league()->league($gamerxz);
         $myTeam = $gamerxz->league('gamerxz')->entry('B Manager');
         $this->assertEquals(2, $myTeam->miniSeries->target);
@@ -160,7 +160,7 @@ class ApiLeagueTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/league.74602.272354.7024.json'));
 
         $api = new Api('key', $this->client);
-        $summoners = $api->summoner()->info([
+        $summoners = $api->summoner()->selectVersion('v1.4')->info([
             74602,
             272354,
             7024,
@@ -200,7 +200,7 @@ class ApiLeagueTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/league.74602.272354.7024.entry.json'));
 
         $api = new Api('key', $this->client);
-        $summoners = $api->summoner()->info([
+        $summoners = $api->summoner()->selectVersion('v1.4')->info([
             74602,
             272354,
             7024,

@@ -64,7 +64,7 @@ class ApiStatsTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.bakasan.json'));
 
         $api = new Api('key', $this->client);
-        $bakasan = $api->summoner()->info('bakasan');
+        $bakasan = $api->summoner()->selectVersion('v1.4')->info('bakasan');
         $api->stats()->summary($bakasan);
         $this->assertTrue($bakasan->stats->playerStat(0) instanceof LeagueWrap\Dto\PlayerStatsSummary);
     }
@@ -86,7 +86,7 @@ class ApiStatsTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.bakasan.json'));
 
         $api = new Api('key', $this->client);
-        $bakasan = $api->summoner()->info('bakasan');
+        $bakasan = $api->summoner()->selectVersion('v1.4')->info('bakasan');
         $stats = $api->stats();
         $stats->setSeason(3);
         $stats->summary($bakasan);

@@ -161,9 +161,9 @@ abstract class AbstractApi
      *
      * @param string $version
      *
-     * @return AbstractApi
-     *
      * @throws VersionException
+     *
+     * @return $this
      */
     public function selectVersion($version)
     {
