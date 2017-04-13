@@ -46,6 +46,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $api = new LeagueWrap\Api('key', $this->client);
         $champion = $api->champion()
                         ->remember(60, $this->cache);
+        $champion->selectVersion('v1.2');
         $champion->free();
         $champion->free();
         $this->assertEquals(1, $champion->getRequestCount());
@@ -76,6 +77,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $api = new LeagueWrap\Api('key', $this->client);
         $champion = $api->champion()
                         ->remember(60, $this->cache);
+        $champion->selectVersion('v1.2');
         try {
             $champion->championById(10101);
         } catch (LeagueWrap\Response\HttpClientError $exception) {
@@ -106,6 +108,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $api->setCacheOnly()
             ->remember(60, $this->cache);
         $champion = $api->champion();
+        $champion->selectVersion('v1.2');
         $champion->free();
         $champion->free();
         $this->assertEquals(0, $champion->getRequestCount());

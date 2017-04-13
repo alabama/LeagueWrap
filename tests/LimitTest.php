@@ -50,7 +50,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
 
         $api = new LeagueWrap\Api('key', $this->client);
         $api->limit(1, 10, 'na', $this->limit1);
-        $champion = $api->champion();
+        $champion = $api->champion()->selectVersion('v1.2');
         $champion->free();
         $champion->free();
     }
@@ -75,7 +75,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
 
         $api = new LeagueWrap\Api('key', $this->client);
         $api->limit(1, 10, 'na', $this->limit1);
-        $champion = $api->champion();
+        $champion = $api->champion()->selectVersion('v1.2');
         $champion->free();
         $champion->free();
     }
@@ -159,7 +159,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
         $api = new LeagueWrap\Api('key', $this->client);
         $api->limit(5, 10, 'na', $this->limit1);
         $api->limit(2, 5, 'na', $this->limit2);
-        $champion = $api->champion();
+        $champion = $api->champion()->selectVersion('v1.2');
         $champion->free();
         $champion->free();
         $champion->free();
@@ -231,7 +231,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
 
         $api = new LeagueWrap\Api('key', $this->client);
         $api->limit(10, 5, 'all', $this->limit1);
-        $champion = $api->champion();
+        $champion = $api->champion()->selectVersion('v1.2');
         $info = $champion->free();
         $this->assertTrue(is_array($info->champions));
     }

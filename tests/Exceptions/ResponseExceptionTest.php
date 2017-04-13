@@ -49,7 +49,7 @@ class ResponseExceptionTest extends PHPUnit_Framework_TestCase
             ]));
 
             $api = new Api('key', $this->client);
-            $api->champion()->all();
+            $api->champion()->selectVersion('v1.2')->all();
         } catch (ResponseException $e) {
             $this->assertTrue($e->hasResponse());
             $this->assertInstanceOf(Http429::class, $e);
@@ -77,7 +77,7 @@ class ResponseExceptionTest extends PHPUnit_Framework_TestCase
             $this->simulateWithResponse(new Response('', 429, []));
 
             $api = new Api('key', $this->client);
-            $api->champion()->all();
+            $api->champion()->selectVersion('v1.2')->all();
         } catch (ResponseException $e) {
             $this->assertTrue($e->hasResponse());
             $this->assertInstanceOf(UnderlyingServiceRateLimitReached::class, $e);

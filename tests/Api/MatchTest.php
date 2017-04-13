@@ -169,7 +169,7 @@ class ApiMatchTest extends PHPUnit_Framework_TestCase
             ->andReturn(new LeagueWrap\Response('', 429));
 
         $api = new Api('key', $this->client);
-        $champion = $api->champion();
+        $champion = $api->champion()->selectVersion('v1.2');
         $champions = $champion->all();
     }
 
@@ -192,7 +192,7 @@ class ApiMatchTest extends PHPUnit_Framework_TestCase
             ]));
 
         $api = new Api('key', $this->client);
-        $champion = $api->champion();
+        $champion = $api->champion()->selectVersion('v1.2');
         $champions = $champion->all();
     }
 }

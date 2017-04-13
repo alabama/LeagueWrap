@@ -29,7 +29,7 @@ class StaticProxyStaticChampionTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/champion.json'));
 
         Api::setKey('key', $this->client);
-        $champions = Champion::all();
+        $champions = Champion::selectVersion('v1.2')->all();
         $this->assertTrue($champions->getChampion(55) instanceof LeagueWrap\Dto\Champion);
     }
 
@@ -45,7 +45,7 @@ class StaticProxyStaticChampionTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/champion.free.json'));
 
         Api::setKey('key', $this->client);
-        $free = Champion::free();
+        $free = Champion::selectVersion('v1.2')->free();
         $this->assertEquals(10, count($free->champions));
     }
 }

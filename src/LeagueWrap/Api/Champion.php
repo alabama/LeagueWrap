@@ -20,6 +20,7 @@ class Champion extends AbstractApi
      * @var array
      */
     protected $versions = [
+        'v3',
         'v1.2',
     ];
 
@@ -59,20 +60,12 @@ class Champion extends AbstractApi
             'freeToPlay' => $this->free,
         ];
 
-        $info = $this->request('champion', $params);
+        $info = $this->request($this->getEndpointName(), $params);
 
         // set up the champions
         $championList = new ChampionList($info);
 
         return $this->attachStaticDataToDto($championList);
-    }
-
-    /**
-     * @return string domain used for the request
-     */
-    public function getDomain()
-    {
-        return $this->getRegion()->getDefaultDomain();
     }
 
     /**
@@ -84,7 +77,7 @@ class Champion extends AbstractApi
      */
     public function championById($championId)
     {
-        $info = $this->request('champion/'.$championId);
+        $info = $this->request($this->getEndpointName().'/'.$championId);
 
         return $this->attachStaticDataToDto(new Champ($info));
     }
@@ -103,5 +96,32 @@ class Champion extends AbstractApi
         $this->free = 'false';
 
         return $championList;
+    }
+
+    /**
+     * Endpoint URI fragment. Can change between API versions.
+     *
+     * @return string
+     */
+    protected function getEndpointName()
+    {
+        if ($this->getVersion() === 'v3') {
+            return 'champions';
+        }
+
+        return 'champion';
+    }
+
+    /**
+     * @return string domain used for the request
+     */
+    public function getDomain()
+    {
+        // Account for v3 changes
+        if ($this->getVersion() === 'v3') {
+            return $this->getRegion()->getPlatformDomain();
+        }
+
+        return $this->getRegion()->getDefaultDomain();
     }
 }

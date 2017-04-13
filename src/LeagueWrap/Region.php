@@ -12,7 +12,9 @@ class Region
     protected $region;
 
     /**
-     * @param array @platformIds platform ids for regions
+     * Platform ids platform ids for regions
+     *
+     * @param array
      */
     protected $platformIds = [
         'na'   => 'NA1',
@@ -39,6 +41,12 @@ class Region
             return strtoupper($this->region);
         }
     }
+
+    /**
+     * v3 domain, see: https://discussion.developer.riotgames.com/articles/652/riot-games-api-v3.html
+     * https://{platform}.api.riotgames.com/{game}/{service}/{version}/{resource}
+     */
+    protected $v3PlatformDomain = 'https://{platform}.api.riotgames.com/lol/platform/';
 
     /**
      * The default domain to attempt to query.
@@ -87,6 +95,16 @@ class Region
     }
 
     /**
+     * New format according to v3 spec of the API.
+     *
+     * @return string
+     */
+    public function getPlatformDomain()
+    {
+        return str_replace('{platform}', strtolower($this->getPlatformId()), $this->v3PlatformDomain);
+    }
+
+    /**
      * Returns the static data domain that this region needs to make its request.
      *
      * @return string
@@ -122,7 +140,7 @@ class Region
     }
 
     /**
-     * Determines wether the given region is locked out.
+     * Determines whether the given region is locked out.
      *
      * @param array $regions
      *

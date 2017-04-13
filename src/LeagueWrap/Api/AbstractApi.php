@@ -14,6 +14,7 @@ use LeagueWrap\Exception\CacheNotFoundException;
 use LeagueWrap\Exception\InvalidIdentityException;
 use LeagueWrap\Exception\LimitReachedException;
 use LeagueWrap\Exception\RegionException;
+use LeagueWrap\Exception\VersionException;
 use LeagueWrap\Limit\Collection;
 use LeagueWrap\Region;
 use LeagueWrap\Response;
@@ -160,14 +161,14 @@ abstract class AbstractApi
      *
      * @param string $version
      *
-     * @return bool|$this
-     * @return $this
+     * @return AbstractApi
+     *
+     * @throws VersionException
      */
     public function selectVersion($version)
     {
         if (!in_array($version, $this->versions)) {
-            // not a value version
-            return false;
+            throw new VersionException('Invalid version selected');
         }
 
         $this->version = $version;
@@ -567,9 +568,9 @@ abstract class AbstractApi
 
     protected function preRequestSetup()
     {
-// get and validate the region
+        // get and validate the region
         if ($this->region->isLocked($this->permittedRegions)) {
-            throw new RegionException('The region "'.$this->region->getRegion().'" is not permited to query this API.');
+            throw new RegionException('The region "'.$this->region->getRegion().'" is not permitted to query this API.');
         }
 
         $this->client->baseUrl($this->getDomain());
