@@ -229,7 +229,8 @@ abstract class AbstractApi
             throw new LimitReachedException('You have hit the request limit in your collection.');
         }
 
-        return $this->handleResponseCaching(function($static, $uri, $params, $cacheKey) {
+
+        return $this->handleResponseCaching(function ($static, $uri, $params, $cacheKey) {
             ++$this->requests;
 
             return $this->client->requestAsync($uri, $params)->then(function (Response $response) use ($cacheKey) {
@@ -266,7 +267,7 @@ abstract class AbstractApi
     {
         $this->preRequestSetup();
 
-        $content = $this->handleResponseCaching(function($static, $uri, $params) {
+        $content = $this->handleResponseCaching(function ($static, $uri, $params) {
             return $this->clientRequest($static, $uri, $params);
         }, $path, $params, $static, $isVersioned);
 
@@ -275,7 +276,7 @@ abstract class AbstractApi
     }
 
     /**
-     * Method that wraps the caching logic and enables the usage of sync or async client
+     * Method that wraps the caching logic and enables the usage of sync or async client.
      *
      * @param callable $requestFunction
      * @param          $path
@@ -292,8 +293,7 @@ abstract class AbstractApi
      */
     protected function handleResponseCaching(
         callable $requestFunction, $path, $params, $static, $isVersioned, $returnPromise = false
-    )
-    {
+    ) {
         // add the key to the param list
         $params['api_key'] = $this->key;
 
