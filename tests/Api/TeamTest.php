@@ -93,7 +93,7 @@ class ApiTeamTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.c9hai.json'));
 
         $api = new Api('key', $this->client);
-        $hai = $api->summoner()->info('C9 Hai');
+        $hai = $api->summoner()->selectVersion('v1.4')->info('C9 Hai');
         $api->team()->team($hai);
         $this->assertTrue($hai->teams['TEAM-9baaf74e-ea61-4ebc-82d9-b013d29399fa'] instanceof LeagueWrap\Dto\Team);
     }
@@ -114,7 +114,7 @@ class ApiTeamTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.c9hai.json'));
 
         $api = new Api('key', $this->client);
-        $hai = $api->summoner()->info('C9 Hai');
+        $hai = $api->summoner()->selectVersion('v1.4')->info('C9 Hai');
         $team = $api->team()->team($hai)['TEAM-9baaf74e-ea61-4ebc-82d9-b013d29399fa'];
         $this->assertEquals('MEMBER', $team->roster->member(19302712)->status);
     }
@@ -153,7 +153,7 @@ class ApiTeamTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/team.18991200.492066.json'));
 
         $api = new Api('key', $this->client);
-        $summoners = $api->summoner()->info([
+        $summoners = $api->summoner()->selectVersion('v1.4')->info([
             18991200,
             492066,
         ]);

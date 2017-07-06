@@ -48,7 +48,7 @@ class StaticProxyStaticGameTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.bakasan.json'));
 
         Api::setKey('key', $this->client);
-        $bakasan = Summoner::info('bakasan');
+        $bakasan = Summoner::selectVersion('v1.4')->info('bakasan');
         $games = Game::recent($bakasan);
         $this->assertTrue($bakasan->recentGame(0) instanceof LeagueWrap\Dto\Game);
     }

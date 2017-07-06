@@ -36,7 +36,7 @@ class RankedStatsList extends AbstractDto
     public function playerStat($playerStatId)
     {
         if (!isset($this->info[$playerStatId])) {
-            return;
+            return null;
         }
 
         return $this->info[$playerStatId];

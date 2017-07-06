@@ -9,12 +9,12 @@ trait ConfigTrait
     /**
      * The region to be used. Defaults to 'na'.
      *
-     * @var string
+     * @var string|Region
      */
     protected $region = 'na';
 
     /**
-     * The amount of seconds we will wait for a responde from the riot
+     * The amount of seconds we will wait for a response from the Riot
      * server. 0 means wait indefinitely.
      *
      * @var int
@@ -135,7 +135,7 @@ trait ConfigTrait
     }
 
     /**
-     * Set wether to attach static data to the response.
+     * Set whether to attach static data to the response.
      *
      * @param bool       $attach
      * @param StaticData $static

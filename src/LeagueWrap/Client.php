@@ -119,7 +119,6 @@ class Client implements ClientInterface, AsyncClientInterface
                 $response->getStatusCode(),
                 $response->getHeaders()
             );
-
             return $wrapResponse;
         }, function (RequestException $e) {
             return $e;

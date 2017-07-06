@@ -19,14 +19,14 @@ use LeagueWrap\Limit\Limit;
  * @method Api\Stats stats()
  * @method Api\Summoner summoner()
  * @method Api\Team team()
- * @method Api\CurrentGame currentGame()
+ * @method Api\Currentgame currentGame()
  */
 class Api
 {
     use Api\ConfigTrait;
 
     /**
-     * The client used to connect with the riot API.
+     * The client used to connect with the Riot API.
      *
      * @var ClientInterface
      */
@@ -61,7 +61,7 @@ class Api
     private $key;
 
     /**
-     * Initiat the default client and key.
+     * Initialize the default client and key.
      *
      * @param string          $key
      * @param ClientInterface $client
@@ -88,7 +88,7 @@ class Api
     }
 
     /**
-     * This is the primary service locater if you utilize the api (which you should) to
+     * This is the primary service locator if you utilize the api (which you should) to
      * load instance of the abstractApi. This is the method that is called when you attempt
      * to invoke "Champion()", "League()", etc.
      *

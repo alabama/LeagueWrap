@@ -31,6 +31,7 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
 
         $api = new Api('key', $this->client);
         $champion = $api->champion();
+        $champion->selectVersion('v1.2');
         $champions = $champion->all();
         $this->assertTrue($champions->getChampion(53) instanceof LeagueWrap\Dto\Champion);
     }
@@ -48,6 +49,7 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
 
         $api = new Api('key', $this->client);
         $champion = $api->champion();
+        $champion->selectVersion('v1.2');
         $champions = $champion->all();
         $this->assertTrue($champions[53] instanceof LeagueWrap\Dto\Champion);
     }
@@ -71,6 +73,7 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
 
         $api = new Api('key', $this->client);
         $champion = $api->champion();
+        $champion->selectVersion('v1.2');
         $this->assertNotEquals($champion->free(), $champion->all());
     }
 
@@ -87,6 +90,7 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
 
         $api = new Api('key', $this->client);
         $champion = $api->champion();
+        $champion->selectVersion('v1.2');
         $champions = $champion->all();
         $count = 0;
         foreach ($champions as $champion) {
@@ -107,7 +111,9 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/champion.free.json'));
 
         $api = new Api('key', $this->client);
-        $free = $api->champion()->free();
+        $champion = $api->champion();
+        $champion->selectVersion('v1.2');
+        $free = $champion->free();
         $this->assertEquals(10, count($free->champions));
     }
 
@@ -123,7 +129,9 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/champion.free.json'));
 
         $api = new Api('key', $this->client);
-        $free = $api->champion()->free();
+        $champion = $api->champion();
+        $champion->selectVersion('v1.2');
+        $free = $champion->free();
         $this->assertEquals(10, count($free));
     }
 
@@ -138,7 +146,7 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/champion.10.json'));
 
         $api = new Api('key', $this->client);
-        $kayle = $api->champion()->championById(10);
+        $kayle = $api->champion()->selectVersion('v1.2')->championById(10);
         $this->assertEquals(true, $kayle->rankedPlayEnabled);
     }
 
@@ -156,7 +164,7 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
                                  file_get_contents('tests/Json/Static/champion.10.json'));
 
         $api = new Api('key', $this->client);
-        $kayle = $api->attachStaticData()->champion()->championById(10);
+        $kayle = $api->attachStaticData()->champion()->selectVersion('v1.2')->championById(10);
         $this->assertEquals('Kayle', $kayle->championStaticData->name);
     }
 
@@ -175,6 +183,7 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $api->setRegion('kr');
         $champion = $api->champion();
+        $champion->selectVersion('v1.2');
         $champions = $champion->all();
         $this->assertTrue($champions->getChampion(53) instanceof LeagueWrap\Dto\Champion);
     }
@@ -194,6 +203,7 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $api->setRegion('ru');
         $champion = $api->champion();
+        $champion->selectVersion('v1.2');
         $champions = $champion->all();
         $this->assertTrue($champions->getChampion(53) instanceof LeagueWrap\Dto\Champion);
     }
@@ -215,6 +225,63 @@ class ApiChampionTest extends PHPUnit_Framework_TestCase
 
         $api = new Api('key', $this->client);
         $champion = $api->champion();
+        $champion->selectVersion('v1.2');
         $champions = $champion->all();
+    }
+
+    public function testManuallySelectedVersion3()
+    {
+        $this->client->shouldReceive('baseUrl')
+            ->once()
+            ->with('https://na1.api.riotgames.com/lol/platform/');
+        $this->client->shouldReceive('request')
+            ->with('v3/champions', [
+                'freeToPlay' => 'false',
+                'api_key'    => 'key',
+            ])->once()
+            ->andReturn(file_get_contents('tests/Json/champion.json'));
+
+        $api = new Api('key', $this->client);
+        $api->setRegion('na');
+        $champion = $api->champion();
+        $champion->selectVersion('v3');
+        $champions = $champion->all();
+        $this->assertTrue($champions->getChampion(53) instanceof LeagueWrap\Dto\Champion);
+    }
+
+    public function testAutomaticallySelectedVersion3()
+    {
+        $this->client->shouldReceive('baseUrl')
+            ->once()
+            ->with('https://na1.api.riotgames.com/lol/platform/');
+        $this->client->shouldReceive('request')
+            ->with('v3/champions', [
+                'freeToPlay' => 'false',
+                'api_key'    => 'key',
+            ])->once()
+            ->andReturn(file_get_contents('tests/Json/champion.json'));
+
+        $api = new Api('key', $this->client);
+        $api->setRegion('na');
+        $champion = $api->champion();
+        $champions = $champion->all();
+        $this->assertTrue($champions->getChampion(53) instanceof LeagueWrap\Dto\Champion);
+    }
+
+    public function testVersion3ForChampionById()
+    {
+        $this->client->shouldReceive('baseUrl')
+            ->with('https://na1.api.riotgames.com/lol/platform/')
+            ->once();
+        $this->client->shouldReceive('request')
+            ->with('v3/champions/10', [
+                'api_key' => 'key',
+            ])
+            ->once()
+            ->andReturn(file_get_contents('tests/Json/champion.10.json'));
+
+        $api = new Api('key', $this->client);
+        $kayle = $api->champion()->selectVersion('v3')->championById(10);
+        $this->assertEquals(true, $kayle->rankedPlayEnabled);
     }
 }

@@ -46,6 +46,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $api = new LeagueWrap\Api('key', $this->client);
         $champion = $api->champion()
                         ->remember(60, $this->cache);
+        $champion->selectVersion('v1.2');
         $champion->free();
         $champion->free();
         $this->assertEquals(1, $champion->getRequestCount());
@@ -76,6 +77,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $api = new LeagueWrap\Api('key', $this->client);
         $champion = $api->champion()
                         ->remember(60, $this->cache);
+        $champion->selectVersion('v1.2');
         try {
             $champion->championById(10101);
         } catch (LeagueWrap\Response\HttpClientError $exception) {
@@ -106,6 +108,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $api->setCacheOnly()
             ->remember(60, $this->cache);
         $champion = $api->champion();
+        $champion->selectVersion('v1.2');
         $champion->free();
         $champion->free();
         $this->assertEquals(0, $champion->getRequestCount());
@@ -127,7 +130,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $api = new LeagueWrap\Api('key', $this->client);
         $api->remember(null, $this->cache)
             ->setCacheOnly();
-        $summoner = $api->summoner()->info('bakasan');
+        $summoner = $api->summoner()->selectVersion('v1.4')->info('bakasan');
     }
 
     public function testRememberSummonerStaticProxy()
@@ -157,8 +160,8 @@ class CacheTest extends PHPUnit_Framework_TestCase
         LeagueWrap\StaticApi::mount();
         Api::setKey('key', $this->client);
         Api::remember(10, $this->cache);
-        Summoner::info('bakasan');
-        Summoner::info('bakasan');
+        Summoner::selectVersion('v1.4')->info('bakasan');
+        Summoner::selectVersion('v1.4')->info('bakasan');
         $this->assertEquals(1, Summoner::getRequestCount());
     }
 
@@ -191,11 +194,11 @@ class CacheTest extends PHPUnit_Framework_TestCase
         Api::setKey('key', $this->client);
         Api::remember(10, $this->cache);
         try {
-            Summoner::info('bakasan');
+            Summoner::selectVersion('v1.4')->info('bakasan');
         } catch (LeagueWrap\Response\Http404 $e) {
         }
         try {
-            Summoner::info('bakasan');
+            Summoner::selectVersion('v1.4')->info('bakasan');
         } catch (LeagueWrap\Response\Http404 $e) {
         }
 
@@ -223,11 +226,11 @@ class CacheTest extends PHPUnit_Framework_TestCase
         Api::remember(10, $this->cache);
         Api::setClientErrorCaching(false);
         try {
-            Summoner::info('bakasan');
+            Summoner::selectVersion('v1.4')->info('bakasan');
         } catch (LeagueWrap\Response\Http404 $e) {
         }
         try {
-            Summoner::info('bakasan');
+            Summoner::selectVersion('v1.4')->info('bakasan');
         } catch (LeagueWrap\Response\Http404 $e) {
         }
 
@@ -264,7 +267,7 @@ class CacheTest extends PHPUnit_Framework_TestCase
         $api = new LeagueWrap\Api('key', $this->client);
         $api->remember(10, $this->cache);
         $api->setServerErrorCaching();
-        $summoner = $api->summoner();
+        $summoner = $api->summoner()->selectVersion('v1.4');
         try {
             $summoner->info('bakasan');
         } catch (LeagueWrap\Response\Http500 $e) {
@@ -298,11 +301,11 @@ class CacheTest extends PHPUnit_Framework_TestCase
         Api::setKey('key', $this->client);
         Api::remember(10, $this->cache);
         try {
-            Summoner::info('bakasan');
+            Summoner::selectVersion('v1.4')->info('bakasan');
         } catch (LeagueWrap\Response\Http500 $e) {
         }
         try {
-            Summoner::info('bakasan');
+            Summoner::selectVersion('v1.4')->info('bakasan');
         } catch (LeagueWrap\Response\Http500 $e) {
         }
 
