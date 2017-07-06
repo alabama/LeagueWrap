@@ -36,7 +36,7 @@ class ApiSummonerTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.bakasan.json'));
 
         $api = new Api('key', $this->client);
-        $bakasan = $api->summoner()->selectVersion('v3')->info('bakasan');
+        $bakasan = $api->summoner()->info('bakasan');
         $this->assertEquals(74602, $bakasan->id);
     }
 
@@ -51,7 +51,7 @@ class ApiSummonerTest extends PHPUnit_Framework_TestCase
                      ->andReturn(file_get_contents('tests/Json/summoner.74602.json'));
 
         $api = new Api('key', $this->client);
-        $summoner = $api->summoner()->selectVersion('v3');
+        $summoner = $api->summoner();
         $summoner->info(74602);
         $this->assertEquals('bakasan', $summoner->bakasan->name);
     }

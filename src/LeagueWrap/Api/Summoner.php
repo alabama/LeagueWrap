@@ -119,102 +119,6 @@ class Summoner extends AbstractApi
     }
 
     /**
-     * Gets all rune pages of the given user object or id.
-     *
-     * @param mixed $identities
-     *
-     * @return array
-     */
-    public function runePages($identities)
-    {
-        $ids = $this->extractIds($identities);
-        $ids = implode(',', $ids);
-
-        $array = $this->request('summoner/'.$ids.'/runes');
-        $summoners = [];
-        foreach ($array as $summonerId => $data) {
-            $runePages = [];
-            foreach ($data['pages'] as $info) {
-                if (!isset($info['slots'])) {
-                    // no runes in this page
-                    $info['slots'] = [];
-                }
-
-                $slots = $info['slots'];
-                unset($info['slots']);
-
-                $runePage = $this->attachStaticDataToDto(new RunePage($info));
-
-                // set runes
-                $runes = [];
-                foreach ($slots as $slot) {
-                    $id = $slot['runeSlotId'];
-                    $rune = $this->attachStaticDataToDto(new Rune($slot));
-                    $runes[$id] = $rune;
-                }
-                $runePage->runes = $runes;
-                $runePages[] = $runePage;
-            }
-            $summoners[$summonerId] = $runePages;
-        }
-
-        $this->attachResponses($identities, $summoners, 'runePages');
-
-        if (is_array($identities)) {
-            return $summoners;
-        } else {
-            return reset($summoners);
-        }
-    }
-
-    /**
-     * Gets all the mastery pages of the given user object or id.
-     *
-     * @param mixed $identities
-     *
-     * @return array
-     */
-    public function masteryPages($identities)
-    {
-        $ids = $this->extractIds($identities);
-        $ids = implode(',', $ids);
-
-        $array = $this->request('summoner/'.$ids.'/masteries');
-        $summoners = [];
-        foreach ($array as $summonerId => $data) {
-            $masteryPages = [];
-            foreach ($data['pages'] as $info) {
-                if (!isset($info['masteries'])) {
-                    // seting the talents to an empty array
-                    $info['masteries'] = [];
-                }
-
-                $masteriesInfo = $info['masteries'];
-                unset($info['masteries']);
-                $masteryPage = $this->attachStaticDataToDto(new MasteryPage($info));
-                // set masterys
-                $masteries = [];
-                foreach ($masteriesInfo as $mastery) {
-                    $id = $mastery['id'];
-                    $mastery = $this->attachStaticDataToDto(new Mastery($mastery));
-                    $masteries[$id] = $mastery;
-                }
-                $masteryPage->masteries = $masteries;
-                $masteryPages[] = $masteryPage;
-            }
-            $summoners[$summonerId] = $masteryPages;
-        }
-
-        $this->attachResponses($identities, $summoners, 'masteryPages');
-
-        if (is_array($identities)) {
-            return $summoners;
-        } else {
-            return reset($summoners);
-        }
-    }
-
-    /**
      * Gets the information by the summonerid of the summoner.
      *
      * @param integer $summonerId
@@ -242,7 +146,7 @@ class Summoner extends AbstractApi
     {
         if (!((is_string($accountId) || is_numeric($accountId)) && ctype_digit((string)$accountId))) {
             throw new \InvalidArgumentException(
-                "the given accountId must be an integer (summoner_id) ".gettype($accountId)." given"
+                "the given accountId must be an integer (accountId) ".gettype($accountId)." given"
             );
         }
 

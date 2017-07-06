@@ -20,6 +20,8 @@ use LeagueWrap\Limit\Limit;
  * @method Api\Summoner summoner()
  * @method Api\Team team()
  * @method Api\Currentgame currentGame()
+ * @method Api\Runes runes()
+ * @method Api\Masteries masteries()
  */
 class Api
 {
