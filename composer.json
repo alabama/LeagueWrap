@@ -1,5 +1,5 @@
 {
-    "name": "league-php/leaguewrap",
+    "name": "alabama/leaguewrap",
     "type": "library",
     "description": "A wrapper for the League of Legends API.",
     "version": "0.7.2",

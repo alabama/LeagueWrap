@@ -387,7 +387,7 @@ abstract class AbstractApi
      *
      * @return string
      */
-    protected function getVersion()
+    public function getVersion()
     {
         if (is_null($this->version)) {
             // get the first version in versions
