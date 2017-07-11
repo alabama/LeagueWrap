@@ -2,9 +2,9 @@
 
 namespace LeagueWrap\Api;
 
-use LeagueWrap\Dto\Match as MatchDto;
+use LeagueWrap\Dto\MatchTimeline as MatchTimelineDto;
 
-class Match extends AbstractApi
+class MatchTimeline extends AbstractApi
 {
     /**
      * Valid version for this api call.
@@ -49,16 +49,9 @@ class Match extends AbstractApi
         return "{$this->getRegion()->getStandardizedDomain()}match/";
     }
 
-    /**
-     * Get the match by match id.
-     *
-     * @param int  $matchId
-     *
-     * @return Match
-     */
-    public function match($matchId)
+    public function timeline($matchId)
     {
-        $response = $this->request("matches/{$matchId}");
-        return $this->attachStaticDataToDto(new MatchDto($response));
+        $response = $this->request("timelines/by-match/{$matchId}");
+        return $this->attachStaticDataToDto(new MatchTimelineDto($response));
     }
 }

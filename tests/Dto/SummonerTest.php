@@ -78,8 +78,8 @@ class DtoSummonerTest extends PHPUnit_Framework_TestCase
     {
         $summoner = new LeagueWrap\Dto\Summoner([]);
 
-        $recentGame = $summoner->recentGame(1);
-        $this->assertTrue(is_null($recentGame));
+        $recentMatchList = $summoner->recentMatchList(1);
+        $this->assertTrue(is_null($recentMatchList));
     }
 
     public function testNoLeague()

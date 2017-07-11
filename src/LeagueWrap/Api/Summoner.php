@@ -69,7 +69,7 @@ class Summoner extends AbstractApi
      */
     public function getDomain()
     {
-        return $this->getRegion()->getStandardizedDomain().'summoner/';
+        return "{$this->getRegion()->getStandardizedDomain()}summoner/";
     }
 
 

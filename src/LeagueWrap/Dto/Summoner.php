@@ -47,17 +47,17 @@ class Summoner extends AbstractDto
      *
      * @param int $gameId
      *
-     * @return MasteryPage|null
+     * @return MatchReference|null
      */
-    public function recentGame($gameId)
+    public function recentMatchList($gameId)
     {
-        if (!isset($this->info['recentGames'])) {
+        if (!isset($this->info['matchlist'])) {
             // no rune pages
             return;
         }
-        $recentGames = $this->info['recentGames'];
+        $matchlist = $this->info['matchlist'];
 
-        return $recentGames->game($gameId);
+        return $matchlist->match($gameId);
     }
 
     /**

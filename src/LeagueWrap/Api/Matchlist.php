@@ -10,7 +10,7 @@ class Matchlist extends AbstractApi
      * @var array
      */
     protected $versions = [
-        'v2.2',
+        'v3',
     ];
 
     /**
@@ -44,38 +44,53 @@ class Matchlist extends AbstractApi
      */
     public function getDomain()
     {
-        return $this->getRegion()->getDefaultDomain();
+        return "{$this->getRegion()->getStandardizedDomain()}match/";
     }
 
     /**
      * Get the match list by summoner identity.
      *
-     * @param $identity int|Summoner
-     * @param array|string|null $rankedQueues List of ranked queue types to use for fetching games.
-     * @param array|string|null $seasons      List of seasons to use for fetching games.
-     * @param array|string|null $championIds  Comma-separated list of champion IDs to use for fetching games.
-     * @param int|null          $beginIndex   The begin index to use for fetching games.
-     * @param int|null          $endIndex     The end index to use for fetching games.
-     * @param int|null          $beginTime    The begin time for fetching games in milliseconds
-     * @param int|null          $endTime      The end time for fetching games in milliseconds
+     * @param int|\LeagueWrap\Dto\Summoner  $identity    This is the accountId of the summoner or the summoner itself!
+     * @param array|string|null             $rankedQueues List of ranked queue types to use for fetching games.
+     * @param array|string|null             $seasons      List of seasons to use for fetching games.
+     * @param array|string|null             $championIds  Comma-separated list of champion IDs to use for fetching games.
+     * @param int|null                      $beginIndex   The begin index to use for fetching games.
+     * @param int|null                      $endIndex     The end index to use for fetching games.
+     * @param int|null                      $beginTime    The begin time for fetching games in milliseconds
+     * @param int|null                      $endTime      The end time for fetching games in milliseconds
      *
      * @throws \LeagueWrap\Exception\CacheNotFoundException
      * @throws \LeagueWrap\Exception\InvalidIdentityException
      * @throws \LeagueWrap\Exception\RegionException
      *
-     * @return \LeagueWrap\Dto\MatchHistory
+     * @return \LeagueWrap\Dto\MatchList
      */
     public function matchlist($identity, $rankedQueues = null, $seasons = null, $championIds = null, $beginIndex = null, $endIndex = null, $beginTime = null, $endTime = null)
     {
-        $summonerId = $this->extractId($identity);
+        $accountId = $this->getAccountId($identity);
 
         $requestParamas = $this->parseParams($rankedQueues, $seasons, $championIds, $beginIndex, $endIndex, $beginTime, $endTime);
-        $array = $this->request('matchlist/by-summoner/'.$summonerId, $requestParamas);
+        $array = $this->request('matchlists/by-account/'.$accountId, $requestParamas);
         $matchList = $this->attachStaticDataToDto(new \LeagueWrap\Dto\MatchList($array));
 
         $this->attachResponse($identity, $matchList, 'matchlist');
 
         return $matchList;
+    }
+
+    protected function getAccountId($identity)
+    {
+        $accountId = $identity;
+        if($identity instanceof \LeagueWrap\Dto\Summoner) {
+            $accountId = $identity->accountId;
+        }
+
+        if (!((is_string($accountId) || is_numeric($accountId)) && ctype_digit((string)$accountId))) {
+            throw new \InvalidArgumentException(
+                "the given accountId must be an integer (accountId) ".gettype($accountId)." given"
+            );
+        }
+        return $accountId;
     }
 
     /**
@@ -132,5 +147,23 @@ class Matchlist extends AbstractApi
         }
 
         return $params;
+    }
+
+    /**
+     * @param int|\LeagueWrap\Dto\Summoner  $identity    This is the accountId of the summoner or the summoner itself!
+     *
+     * @throws \LeagueWrap\Exception\RegionException
+     * @throws \InvalidArgumentException
+     *
+     * @return \LeagueWrap\Dto\MatchList
+     */
+    public function recent($identity)
+    {
+        $accountId = $this->getAccountId($identity);
+        $array = $this->request("matchlists/by-account/{$accountId}/recent");
+        $matchList = $this->attachStaticDataToDto(new \LeagueWrap\Dto\MatchList($array));
+
+        $this->attachResponse($identity, $matchList, 'matchlist');
+        return $matchList;
     }
 }

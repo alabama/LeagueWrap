@@ -38,7 +38,7 @@ class Staticdata extends AbstractApi
      * @var array
      */
     protected $versions = [
-        'v1.2',
+        'v3',
     ];
 
     /**
@@ -65,7 +65,7 @@ class Staticdata extends AbstractApi
      *
      * @var array
      */
-    protected $dataById = ['champion', 'summoner-spell'];
+    protected $dataById = ['champions', 'summoner-spells'];
 
     /**
      * The amount of time we intend to remember the response for.
@@ -109,7 +109,7 @@ class Staticdata extends AbstractApi
      */
     public function getDomain()
     {
-        return $this->getRegion()->getStaticDataDomain();
+        return "{$this->getRegion()->getStandardizedDomain()}static-data/";
     }
 
     /**
@@ -135,8 +135,8 @@ class Staticdata extends AbstractApi
      */
     public function getChampion($championId, $data = null)
     {
-        $params = $this->setUpParams('champion', $championId, $data, 'champData', 'champData');
-        $array = $this->makeRequest('champion', $championId, $params);
+        $params = $this->setUpParams('champions', $championId, $data, 'champData', 'champData');
+        $array = $this->makeRequest('champions', $championId, $params);
 
         if ($this->appendId($championId)) {
             return new staticChampion($array);
@@ -168,8 +168,8 @@ class Staticdata extends AbstractApi
      */
     public function getItem($itemId, $data = null)
     {
-        $params = $this->setUpParams('item', $itemId, $data, 'itemListData', 'itemData');
-        $array = $this->makeRequest('item', $itemId, $params);
+        $params = $this->setUpParams('items', $itemId, $data, 'itemListData', 'itemData');
+        $array = $this->makeRequest('items', $itemId, $params);
 
         if ($this->appendId($itemId)) {
             return new staticItem($array);
@@ -201,8 +201,8 @@ class Staticdata extends AbstractApi
      */
     public function getMastery($masteryId, $data = null)
     {
-        $params = $this->setUpParams('mastery', $masteryId, $data, 'masteryListData', 'masteryData');
-        $array = $this->makeRequest('mastery', $masteryId, $params);
+        $params = $this->setUpParams('masteries', $masteryId, $data, 'masteryListData', 'masteryData');
+        $array = $this->makeRequest('masteries', $masteryId, $params);
 
         if ($this->appendId($masteryId)) {
             return new staticMastery($array);
@@ -235,7 +235,7 @@ class Staticdata extends AbstractApi
     public function getRune($runeId, $data = null)
     {
         $params = $this->setUpParams('rune', $runeId, $data, 'runeListData', 'runeData');
-        $array = $this->makeRequest('rune', $runeId, $params);
+        $array = $this->makeRequest('runes', $runeId, $params);
 
         if ($this->appendId($runeId)) {
             return new staticRune($array);
@@ -267,8 +267,8 @@ class Staticdata extends AbstractApi
      */
     public function getSummonerSpell($summonerSpellId, $data = null)
     {
-        $params = $this->setUpParams('summoner-spell', $summonerSpellId, $data, 'spellData', 'spellData');
-        $array = $this->makeRequest('summoner-spell', $summonerSpellId, $params);
+        $params = $this->setUpParams('summoner-spells', $summonerSpellId, $data, 'spellData', 'spellData');
+        $array = $this->makeRequest('summoner-spells', $summonerSpellId, $params);
 
         if ($this->appendId($summonerSpellId)) {
             return new staticSummonerSpell($array);
@@ -285,7 +285,7 @@ class Staticdata extends AbstractApi
     public function getRealm()
     {
         $params = $this->setUpParams();
-        $array = $this->makeRequest('realm', null, $params);
+        $array = $this->makeRequest('realms', null, $params);
 
         return new staticRealm($array);
     }

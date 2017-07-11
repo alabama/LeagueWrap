@@ -20,8 +20,7 @@ class Champion extends AbstractApi
      * @var array
      */
     protected $versions = [
-        'v3',
-        'v1.2',
+        'v3'
     ];
 
     /**

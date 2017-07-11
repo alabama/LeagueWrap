@@ -13,7 +13,6 @@ use LeagueWrap\Limit\Limit;
 
 /**
  * @method Api\Champion champion()
- * @method Api\Game game()
  * @method Api\League league()
  * @method Api\Staticdata staticData()
  * @method Api\Stats stats()
@@ -22,6 +21,9 @@ use LeagueWrap\Limit\Limit;
  * @method Api\Currentgame currentGame()
  * @method Api\Runes runes()
  * @method Api\Masteries masteries()
+ * @method Api\Match match()
+ * @method Api\MatchList matchlist()
+ * @method Api\MatchTimeline matchTimeline()
  */
 class Api
 {
