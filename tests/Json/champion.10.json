@@ -1,1 +1,8 @@
-{"id":10,"active":true,"botEnabled":false,"freeToPlay":false,"botMmEnabled":true,"rankedPlayEnabled":true}
+{
+  "rankedPlayEnabled": true,
+  "botEnabled": true,
+  "botMmEnabled": true,
+  "active": true,
+  "freeToPlay": false,
+  "id": 10
+}

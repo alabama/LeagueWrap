@@ -39,6 +39,7 @@ class Champion extends AbstractApi
         'ru',
         'tr',
         'kr',
+        'jp'
     ];
 
     /**
@@ -104,11 +105,7 @@ class Champion extends AbstractApi
      */
     protected function getEndpointName()
     {
-        if ($this->getVersion() === 'v3') {
-            return 'champions';
-        }
-
-        return 'champion';
+        return 'champions';
     }
 
     /**
@@ -116,11 +113,6 @@ class Champion extends AbstractApi
      */
     public function getDomain()
     {
-        // Account for v3 changes
-        if ($this->getVersion() === 'v3') {
-            return $this->getRegion()->getPlatformDomain();
-        }
-
-        return $this->getRegion()->getDefaultDomain();
+        return $this->getRegion()->getPlatformDomain();
     }
 }

@@ -12,6 +12,7 @@ use LeagueWrap\Limit\FileLimit;
 use LeagueWrap\Limit\Limit;
 
 /**
+ * @method Api\Championmastery championMastery
  * @method Api\Champion champion()
  * @method Api\League league()
  * @method Api\Staticdata staticData()

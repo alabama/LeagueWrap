@@ -31,7 +31,7 @@ class MatchTimeline extends AbstractApi
         'kr',
         'ru',
         'tr',
-        'jp',
+        'jp'
     ];
 
     /**

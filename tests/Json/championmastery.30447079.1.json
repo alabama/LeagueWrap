@@ -1,9 +1,11 @@
 {
+  "championLevel": 3,
+  "chestGranted": false,
+  "championPoints": 6484,
+  "championPointsSinceLastLevel": 484,
   "playerId": 30447079,
+  "championPointsUntilNextLevel": 6116,
+  "tokensEarned": 0,
   "championId": 1,
-  "championLevel": 2,
-  "championPoints": 3729,
-  "lastPlayTime": 1443135919000,
-  "championPointsSinceLastLevel": 1929,
-  "championPointsUntilNextLevel": 2271
+  "lastPlayTime": 1485288631000
 }

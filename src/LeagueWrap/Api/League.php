@@ -32,7 +32,7 @@ class League extends AbstractApi
         'ru',
         'tr',
         'kr',
-        'jp',
+        'jp'
     ];
 
     /**

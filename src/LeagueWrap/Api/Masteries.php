@@ -32,7 +32,7 @@ class Masteries extends AbstractApi
         'ru',
         'tr',
         'kr',
-        'jp',
+        'jp'
     ];
 
     /**

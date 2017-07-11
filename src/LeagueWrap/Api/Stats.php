@@ -43,7 +43,7 @@ class Stats extends AbstractApi
         'ru',
         'tr',
         'kr',
-        'jp',
+        'jp'
     ];
 
     /**

@@ -30,6 +30,7 @@ class Status extends AbstractApi
         'kr',
         'ru',
         'tr',
+        'jp'
     ];
 
     /**

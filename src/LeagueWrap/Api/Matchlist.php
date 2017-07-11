@@ -29,7 +29,7 @@ class Matchlist extends AbstractApi
         'kr',
         'ru',
         'tr',
-        'jp',
+        'jp'
     ];
 
     /**

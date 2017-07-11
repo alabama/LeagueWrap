@@ -1,1 +1,84 @@
-{"champions":[{"id":266,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":false,"rankedPlayEnabled":true},{"id":53,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":true,"rankedPlayEnabled":true},{"id":42,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":false,"rankedPlayEnabled":true},{"id":122,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":true,"rankedPlayEnabled":true},{"id":60,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":false,"rankedPlayEnabled":true},{"id":81,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":true,"rankedPlayEnabled":true},{"id":114,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":false,"rankedPlayEnabled":true},{"id":30,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":true,"rankedPlayEnabled":true},{"id":55,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":false,"rankedPlayEnabled":true},{"id":412,"active":true,"botEnabled":false,"freeToPlay":true,"botMmEnabled":false,"rankedPlayEnabled":true}]}
+{
+  "champions": [
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": true,
+      "botMmEnabled": true,
+      "active": true,
+      "freeToPlay": true,
+      "id": 36
+    },
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": true,
+      "botMmEnabled": true,
+      "active": true,
+      "freeToPlay": true,
+      "id": 81
+    },
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": false,
+      "botMmEnabled": false,
+      "active": true,
+      "freeToPlay": true,
+      "id": 40
+    },
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": false,
+      "botMmEnabled": false,
+      "active": true,
+      "freeToPlay": true,
+      "id": 203
+    },
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": true,
+      "botMmEnabled": true,
+      "active": true,
+      "freeToPlay": true,
+      "id": 236
+    },
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": false,
+      "botMmEnabled": true,
+      "active": true,
+      "freeToPlay": true,
+      "id": 117
+    },
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": false,
+      "botMmEnabled": true,
+      "active": true,
+      "freeToPlay": true,
+      "id": 90
+    },
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": false,
+      "botMmEnabled": false,
+      "active": true,
+      "freeToPlay": true,
+      "id": 113
+    },
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": false,
+      "botMmEnabled": true,
+      "active": true,
+      "freeToPlay": true,
+      "id": 14
+    },
+    {
+      "rankedPlayEnabled": true,
+      "botEnabled": false,
+      "botMmEnabled": false,
+      "active": true,
+      "freeToPlay": true,
+      "id": 134
+    }
+  ]
+}

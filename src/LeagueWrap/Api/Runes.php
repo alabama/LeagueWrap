@@ -33,7 +33,7 @@ class Runes extends AbstractApi
         'ru',
         'tr',
         'kr',
-        'jp',
+        'jp'
     ];
 
     /**
