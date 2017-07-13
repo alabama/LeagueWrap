@@ -12,7 +12,9 @@ class Status extends AbstractApi
      *
      * @var array
      */
-    protected $versions = [];
+    protected $versions = [
+        'v3'
+    ];
 
     /**
      * A list of all permitted regions for the Champion api call.
@@ -45,22 +47,7 @@ class Status extends AbstractApi
      */
     public function getDomain()
     {
-        return $this->getRegion()->getStatusDomain();
-    }
-
-    /**
-     * @throws \LeagueWrap\Exception\CacheNotFoundException
-     * @throws \LeagueWrap\Exception\RegionException
-     * @throws \LeagueWrap\Response\HttpClientError
-     * @throws \LeagueWrap\Response\HttpServerError
-     *
-     * @return ShardList A list of all available shards
-     */
-    public function shards()
-    {
-        $response = $this->request('shards', [], true, false);
-
-        return new ShardList($response);
+        return "{$this->getRegion()->getStandardizedDomain()}status/";
     }
 
     /**
@@ -71,15 +58,11 @@ class Status extends AbstractApi
      * @throws \LeagueWrap\Response\HttpClientError
      * @throws \LeagueWrap\Response\HttpServerError
      *
-     * @return ShardStatus Detailed status updates for the given region
+     * @return ShardStatus Detailed status updates for set region in the Api
      */
-    public function shardStatus($region = null)
+    public function shardData()
     {
-        if (!isset($region)) {
-            $region = $this->getRegion()->getRegion();
-        }
-        $response = $this->request('shards/'.$region, [], true, false);
-
+        $response = $this->request('shard-data');
         return new ShardStatus($response);
     }
 }

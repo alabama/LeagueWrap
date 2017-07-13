@@ -35,13 +35,6 @@ class StaticProxyStaticApiTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($summoner instanceof LeagueWrap\Api\Summoner);
     }
 
-    public function testGame()
-    {
-        Api::setKey('key');
-        $game = Api::game();
-        $this->assertTrue($game instanceof LeagueWrap\Api\Game);
-    }
-
     public function testLeague()
     {
         Api::setKey('key');
@@ -49,25 +42,32 @@ class StaticProxyStaticApiTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($league instanceof LeagueWrap\Api\League);
     }
 
-    public function testStats()
-    {
-        Api::setKey('key');
-        $stats = Api::stats();
-        $this->assertTrue($stats instanceof LeagueWrap\Api\Stats);
-    }
-
-    public function testTeam()
-    {
-        Api::setKey('key');
-        $team = Api::team();
-        $this->assertTrue($team instanceof LeagueWrap\Api\Team);
-    }
-
     public function testStaticData()
     {
         Api::setKey('key');
         $staticData = Api::staticData();
         $this->assertTrue($staticData instanceof LeagueWrap\Api\Staticdata);
+    }
+
+    public function testStaticMatch()
+    {
+        Api::setKey('key');
+        $league = Api::match();
+        $this->assertTrue($league instanceof LeagueWrap\Api\Match);
+    }
+
+    public function testStaticMatchlist()
+    {
+        Api::setKey('key');
+        $league = Api::matchlist();
+        $this->assertTrue($league instanceof LeagueWrap\Api\Matchlist);
+    }
+
+    public function testStaticMatchtimeline()
+    {
+        Api::setKey('key');
+        $league = Api::matchTimeline();
+        $this->assertTrue($league instanceof LeagueWrap\Api\Matchtimeline);
     }
 
     public function testFresh()

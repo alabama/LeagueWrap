@@ -42,7 +42,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('baseUrl')
                      ->twice();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'freeToPlay' => 'true',
                         'api_key'    => 'key',
                      ])->once()
@@ -50,7 +50,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
 
         $api = new LeagueWrap\Api('key', $this->client);
         $api->limit(1, 10, 'na', $this->limit1);
-        $champion = $api->champion()->selectVersion('v1.2');
+        $champion = $api->champion()->selectVersion('v3');
         $champion->free();
         $champion->free();
     }
@@ -67,7 +67,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('baseUrl')
                      ->twice();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'freeToPlay' => 'true',
                         'api_key'    => 'key',
                      ])->once()
@@ -75,7 +75,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
 
         $api = new LeagueWrap\Api('key', $this->client);
         $api->limit(1, 10, 'na', $this->limit1);
-        $champion = $api->champion()->selectVersion('v1.2');
+        $champion = $api->champion()->selectVersion('v3');
         $champion->free();
         $champion->free();
     }
@@ -102,7 +102,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('baseUrl')
                      ->twice();
         $this->client->shouldReceive('request')
-                     ->with('v1.4/summoner/by-name/bakasan', [
+                     ->with('v3/summoners/by-name/bakasan', [
                         'api_key' => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/summoner.bakasan.json'));
@@ -110,8 +110,8 @@ class LimitTest extends PHPUnit_Framework_TestCase
         LeagueWrap\StaticApi::mount();
         Api::setKey('key', $this->client);
         Api::limit(1, 10, 'na', $this->limit1);
-        Summoner::selectVersion('v1.4')->info('bakasan');
-        Summoner::selectVersion('v1.4')->info('bakasan');
+        Summoner::selectVersion('v3')->info('bakasan');
+        Summoner::selectVersion('v3')->info('bakasan');
     }
 
     /**
@@ -150,7 +150,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('baseUrl')
                      ->times(3);
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'freeToPlay' => 'true',
                         'api_key'    => 'key',
                      ])->twice()
@@ -159,7 +159,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
         $api = new LeagueWrap\Api('key', $this->client);
         $api->limit(5, 10, 'na', $this->limit1);
         $api->limit(2, 5, 'na', $this->limit2);
-        $champion = $api->champion()->selectVersion('v1.2');
+        $champion = $api->champion()->selectVersion('v3');
         $champion->free();
         $champion->free();
         $champion->free();
@@ -223,7 +223,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('baseUrl')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'freeToPlay' => 'true',
                         'api_key'    => 'key',
                      ])->once()
@@ -231,7 +231,7 @@ class LimitTest extends PHPUnit_Framework_TestCase
 
         $api = new LeagueWrap\Api('key', $this->client);
         $api->limit(10, 5, 'all', $this->limit1);
-        $champion = $api->champion()->selectVersion('v1.2');
+        $champion = $api->champion()->selectVersion('v3');
         $info = $champion->free();
         $this->assertTrue(is_array($info->champions));
     }

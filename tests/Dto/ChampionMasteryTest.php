@@ -8,6 +8,6 @@ class DtoChampionMasteryTest extends PHPUnit_Framework_TestCase
         $mastery = new \LeagueWrap\Dto\ChampionMastery($content);
 
         $this->assertEquals($mastery->championId, 1);
-        $this->assertEquals($mastery->lastPlayTime, 1443135919000);
+        $this->assertEquals($mastery->lastPlayTime, 1485288631000);
     }
 }

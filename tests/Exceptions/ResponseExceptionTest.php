@@ -26,10 +26,10 @@ class ResponseExceptionTest extends PHPUnit_Framework_TestCase
 
     private function simulateWithResponse(Response $response)
     {
-        $this->client->shouldReceive('baseUrl')->with('https://na.api.pvp.net/api/lol/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/platform/')
             ->once();
         $this->client->shouldReceive('request')
-            ->with('v1.2/champion', [
+            ->with('v3/champions', [
                 'freeToPlay' => 'false',
                 'api_key'    => 'key',
             ])->once()
@@ -49,7 +49,7 @@ class ResponseExceptionTest extends PHPUnit_Framework_TestCase
             ]));
 
             $api = new Api('key', $this->client);
-            $api->champion()->selectVersion('v1.2')->all();
+            $api->champion()->selectVersion('v3')->all();
         } catch (ResponseException $e) {
             $this->assertTrue($e->hasResponse());
             $this->assertInstanceOf(Http429::class, $e);
@@ -77,7 +77,7 @@ class ResponseExceptionTest extends PHPUnit_Framework_TestCase
             $this->simulateWithResponse(new Response('', 429, []));
 
             $api = new Api('key', $this->client);
-            $api->champion()->selectVersion('v1.2')->all();
+            $api->champion()->selectVersion('v3')->all();
         } catch (ResponseException $e) {
             $this->assertTrue($e->hasResponse());
             $this->assertInstanceOf(UnderlyingServiceRateLimitReached::class, $e);

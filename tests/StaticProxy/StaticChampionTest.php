@@ -22,14 +22,14 @@ class StaticProxyStaticChampionTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('baseUrl')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'freeToPlay' => 'false',
                         'api_key'    => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/champion.json'));
 
         Api::setKey('key', $this->client);
-        $champions = Champion::selectVersion('v1.2')->all();
+        $champions = Champion::selectVersion('v3')->all();
         $this->assertTrue($champions->getChampion(55) instanceof LeagueWrap\Dto\Champion);
     }
 
@@ -38,14 +38,14 @@ class StaticProxyStaticChampionTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('baseUrl')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'freeToPlay' => 'true',
                         'api_key'    => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/champion.free.json'));
 
         Api::setKey('key', $this->client);
-        $free = Champion::selectVersion('v1.2')->free();
+        $free = Champion::selectVersion('v3')->free();
         $this->assertEquals(10, count($free->champions));
     }
 }

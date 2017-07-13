@@ -102,10 +102,12 @@ class DtoSummonerTest extends PHPUnit_Framework_TestCase
     {
         $league1 = new LeagueWrap\Dto\League([]);
         $league2 = new LeagueWrap\Dto\League([
-            'id'      => 2,
-            'entries' => [
+            'id'        => 2,
+            'queue'     => 'RANKED_SOLO_5x5',
+            'entries'   => [
                 [
                     'playerOrTeamId' => 2,
+                    'queue'
                 ],
             ],
         ]);

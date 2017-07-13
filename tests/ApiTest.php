@@ -18,32 +18,11 @@ class ApiTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($summoner instanceof LeagueWrap\Api\Summoner);
     }
 
-    public function testGame()
-    {
-        $api = new Api('key');
-        $game = $api->game();
-        $this->assertTrue($game instanceof LeagueWrap\Api\Game);
-    }
-
     public function testLeague()
     {
         $api = new Api('key');
         $league = $api->league();
         $this->assertTrue($league instanceof LeagueWrap\Api\League);
-    }
-
-    public function testStats()
-    {
-        $api = new Api('key');
-        $stats = $api->stats();
-        $this->assertTrue($stats instanceof LeagueWrap\Api\Stats);
-    }
-
-    public function testTeam()
-    {
-        $api = new Api('key');
-        $team = $api->team();
-        $this->assertTrue($team instanceof LeagueWrap\Api\Team);
     }
 
     public function testStaticData()
@@ -65,6 +44,13 @@ class ApiTest extends PHPUnit_Framework_TestCase
         $api = new Api('key');
         $matchlist = $api->matchList();
         $this->assertTrue($matchlist instanceof Leaguewrap\Api\MatchList);
+    }
+
+    public function testMatchTimeline()
+    {
+        $api = new Api('key');
+        $matchTimeline = $api->matchTimeline();
+        $this->assertTrue($matchTimeline instanceof Leaguewrap\Api\Matchtimeline);
     }
 
     public function testChampionMastery()

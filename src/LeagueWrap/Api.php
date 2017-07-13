@@ -17,13 +17,13 @@ use LeagueWrap\Limit\Limit;
  * @method Api\League league()
  * @method Api\Staticdata staticData()
  * @method Api\Summoner summoner()
- * @method Api\Team team()
  * @method Api\Currentgame currentGame()
  * @method Api\Runes runes()
  * @method Api\Masteries masteries()
  * @method Api\Match match()
  * @method Api\MatchList matchlist()
- * @method Api\MatchTimeline matchTimeline()
+ * @method Api\Matchtimeline matchTimeline()
+ * @method Api\Status status
  */
 class Api
 {

@@ -4,7 +4,7 @@ namespace LeagueWrap\Api;
 
 use LeagueWrap\Dto\MatchTimeline as MatchTimelineDto;
 
-class MatchTimeline extends AbstractApi
+class Matchtimeline extends AbstractApi
 {
     /**
      * Valid version for this api call.

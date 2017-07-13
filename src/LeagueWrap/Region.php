@@ -49,23 +49,6 @@ class Region
     protected $v3StandardizedDomain = 'https://{platform}.api.riotgames.com/lol/';
     protected $v3PlatformDomain = 'https://{platform}.api.riotgames.com/lol/platform/';
 
-    /**
-     * The default domain to attempt to query.
-     */
-    protected $defaultDomain = 'https://%s.api.pvp.net/api/lol/%s/';
-
-    /**
-     * The default domain for static queries.
-     */
-    protected $defaultStaticDomain = 'https://global.api.pvp.net/api/lol/static-data/%s/';
-
-    protected $featuredGameDomain = 'https://%s.api.pvp.net/observer-mode/rest/';
-
-    protected $currentGameDomain = 'https://%s.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/%s/';
-
-    protected $championMasteryDomain = 'https://%s.api.pvp.net/championmastery/location/%s/';
-
-    protected $statusDomain = 'http://status.leagueoflegends.com/';
 
     /**
      * @param $region
@@ -86,16 +69,6 @@ class Region
     }
 
     /**
-     * Returns the domain that this region needs to make its request.
-     *
-     * @return string
-     */
-    public function getDefaultDomain()
-    {
-        return sprintf($this->defaultDomain, $this->getRegion(), $this->getRegion());
-    }
-
-    /**
      * Standardized domain across all v3 endpoints.
      */
     public function getStandardizedDomain()
@@ -111,41 +84,6 @@ class Region
     public function getPlatformDomain()
     {
         return str_replace('{platform}', strtolower($this->getPlatformId()), $this->v3PlatformDomain);
-    }
-
-    /**
-     * Returns the static data domain that this region needs to make its request.
-     *
-     * @return string
-     */
-    public function getStaticDataDomain()
-    {
-        return sprintf($this->defaultStaticDomain, $this->getRegion());
-    }
-
-    public function getCurrentGameDomain()
-    {
-        return sprintf($this->currentGameDomain, $this->getRegion(), $this->getPlatformId());
-    }
-
-    /**
-     * Returns the observer domain that this region needs to make its request.
-     *
-     * @return string
-     */
-    public function getFeaturedGamesDomain()
-    {
-        return sprintf($this->featuredGameDomain, $this->getRegion());
-    }
-
-    public function getChampionMasteryDomain()
-    {
-        return sprintf($this->championMasteryDomain, $this->getRegion(), $this->getPlatformId());
-    }
-
-    public function getStatusDomain()
-    {
-        return $this->statusDomain;
     }
 
     /**

@@ -18,57 +18,37 @@ class StatusTest extends PHPUnit_Framework_TestCase
         m::close();
     }
 
-    public function testGetShards()
+    public function testGetShardStatusDefault()
     {
-        $this->client->shouldReceive('baseUrl')
-            ->with('http://status.leagueoflegends.com/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/status/')
             ->once();
         $this->client->shouldReceive('request')
-            ->with('shards', [
+            ->with('v3/shard-data', [
                 'api_key' => 'key',
             ])->once()
-            ->andReturn(file_get_contents('tests/Json/shards.json'));
+            ->andReturn(file_get_contents('tests/Json/shard-data.na.json'));
 
         $api = new Api('key', $this->client);
-        $shardlist = $api->status()->shards();
+        $api->setRegion('na');
+        $shardStatus = $api->status()->shardData();
 
-        $this->assertTrue($shardlist instanceof \LeagueWrap\Dto\ShardList);
-        $this->assertEquals('na', $shardlist[0]->slug);
+        $this->assertTrue($shardStatus instanceof \LeagueWrap\Dto\ShardStatus);
+        $this->assertCount(0, $shardStatus->getService('Game')->incidents);
     }
 
     public function testGetShardStatusWithRegion()
     {
-        $this->client->shouldReceive('baseUrl')
-            ->with('http://status.leagueoflegends.com/')
+        $this->client->shouldReceive('baseUrl')->with('https://euw1.api.riotgames.com/lol/status/')
             ->once();
         $this->client->shouldReceive('request')
-            ->with('shards/euw', [
+            ->with('v3/shard-data', [
                 'api_key' => 'key',
             ])->once()
-            ->andReturn(file_get_contents('tests/Json/shardstatus.euw.json'));
-
-        $api = new Api('key', $this->client);
-        $api->setRegion('na');
-        $shardStatus = $api->status()->shardStatus('euw');
-
-        $this->assertTrue($shardStatus instanceof \LeagueWrap\Dto\ShardStatus);
-        $this->assertTrue(count($shardStatus->getService('Game')->incidents) > 0);
-    }
-
-    public function testGetShardStatus()
-    {
-        $this->client->shouldReceive('baseUrl')
-            ->with('http://status.leagueoflegends.com/')
-            ->once();
-        $this->client->shouldReceive('request')
-            ->with('shards/euw', [
-                'api_key' => 'key',
-            ])->once()
-            ->andReturn(file_get_contents('tests/Json/shardstatus.euw.json'));
+            ->andReturn(file_get_contents('tests/Json/shard-data.euw.json'));
 
         $api = new Api('key', $this->client);
         $api->setRegion('euw');
-        $shardStatus = $api->status()->shardStatus();
+        $shardStatus = $api->status()->shardData();
 
         $this->assertTrue($shardStatus instanceof \LeagueWrap\Dto\ShardStatus);
     }

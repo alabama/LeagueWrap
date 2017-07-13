@@ -20,33 +20,40 @@ class RegionTest extends PHPUnit_Framework_TestCase
         ]));
     }
 
-    public function testGetDomain()
-    {
-        $region = new Region('euw');
-        $this->assertEquals('https://euw.api.pvp.net/api/lol/euw/', $region->getDefaultDomain());
-    }
-
-    public function testGetDomainStaticData()
+    public function testGetStandardizedDomain()
     {
         $region = new Region('na');
-        $this->assertEquals('https://global.api.pvp.net/api/lol/static-data/na/', $region->getStaticDataDomain());
+        $this->assertEquals('https://na1.api.riotgames.com/lol/', $region->getStandardizedDomain());
     }
 
-    public function testGetFeaturedGamesDomain()
+    public function testGetStandardizedDomainBr()
+    {
+        $region = new Region('br');
+        $this->assertEquals('https://br1.api.riotgames.com/lol/', $region->getStandardizedDomain());
+    }
+
+    public function testGetStandardizedDomainJp1()
+    {
+        $region = new Region('jp');
+        $this->assertEquals('https://jp1.api.riotgames.com/lol/', $region->getStandardizedDomain());
+    }
+
+
+    public function testGetPlatformDomain()
     {
         $region = new Region('na');
-        $this->assertEquals('https://na.api.pvp.net/observer-mode/rest/', $region->getFeaturedGamesDomain());
+        $this->assertEquals('https://na1.api.riotgames.com/lol/platform/', $region->getPlatformDomain());
     }
 
-    public function testGetCurrentGameDomain()
+    public function testGetPlatformDomainBr()
     {
-        $region = new Region('euw');
-        $this->assertEquals('https://euw.api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/EUW1/', $region->getCurrentGameDomain());
+        $region = new Region('br');
+        $this->assertEquals('https://br1.api.riotgames.com/lol/platform/', $region->getPlatformDomain());
     }
 
-    public function testGetChampionMasteryDomain()
+    public function testGetPlatformDomainJp1()
     {
-        $region = new Region('euw');
-        $this->assertEquals('https://euw.api.pvp.net/championmastery/location/EUW1/', $region->getChampionMasteryDomain());
+        $region = new Region('jp');
+        $this->assertEquals('https://jp1.api.riotgames.com/lol/platform/', $region->getPlatformDomain());
     }
 }

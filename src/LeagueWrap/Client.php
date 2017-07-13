@@ -111,8 +111,10 @@ class Client implements ClientInterface, AsyncClientInterface
         if (!$this->guzzle instanceof Guzzle) {
             throw new BaseUrlException('BaseUrl was never set. Please call baseUrl($url) since Client does not exist.');
         }
-
-        return $this->guzzle->getAsync($path.'?'.http_build_query($params), [
+        $query = http_build_query($params, null, '&');
+        $query = preg_replace('/%5B(?:[0-9]|[1-9][0-9]+)%5D=/', '=', $query);
+        $uri = $path.'?'.$query;
+        return $this->guzzle->getAsync($uri, [
             'timeout'     => $this->timeout,
             'http_errors' => false,
         ])->then(function (ResponseInterface $response) {

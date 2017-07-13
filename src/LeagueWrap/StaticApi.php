@@ -12,11 +12,8 @@ final class StaticApi
     protected static $staticProxy = [
         'Api',
         'Champion',
-        'Game',
         'League',
-        'Stats',
         'Summoner',
-        'Team',
         'StaticData',
     ];
 

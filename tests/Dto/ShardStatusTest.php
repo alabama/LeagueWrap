@@ -7,7 +7,7 @@ class ShardStatusTest extends PHPUnit_Framework_TestCase
 {
     public function testParseShardStatus()
     {
-        $content = json_decode(file_get_contents('tests/Json/shardstatus.euw.json'), true);
+        $content = json_decode(file_get_contents('tests/Json/shard-data.euw.json'), true);
         $shardStatus = new ShardStatus($content);
         $this->assertTrue($shardStatus instanceof ShardStatus);
         $service = $shardStatus->services[0];
@@ -16,7 +16,7 @@ class ShardStatusTest extends PHPUnit_Framework_TestCase
 
     public function testGetServiceByName()
     {
-        $content = json_decode(file_get_contents('tests/Json/shardstatus.euw.json'), true);
+        $content = json_decode(file_get_contents('tests/Json/shard-data.euw.json'), true);
         $shardStatus = new ShardStatus($content);
         $service = $shardStatus->getService('Game');
         $this->assertTrue($service instanceof \LeagueWrap\Dto\Service);
@@ -25,7 +25,7 @@ class ShardStatusTest extends PHPUnit_Framework_TestCase
 
     public function testGetTranslation()
     {
-        $content = json_decode(file_get_contents('tests/Json/shardstatus.euw.json'), true);
+        $content = json_decode(file_get_contents('tests/Json/shard-data.euw.json'), true);
         $shardStatus = new ShardStatus($content);
         $service = $shardStatus->getService('Game');
         $incident = $service->incidents[0];

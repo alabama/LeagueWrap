@@ -22,7 +22,7 @@ class StaticProxyStaticStaticDataTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('baseUrl')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'api_key'  => 'key',
                         'dataById' => 'true',
                      ])->once()
@@ -39,7 +39,7 @@ class StaticProxyStaticStaticDataTest extends PHPUnit_Framework_TestCase
         $this->client->shouldReceive('baseUrl')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/item', [
+                     ->with('v3/items', [
                         'api_key' => 'key',
                         'locale'  => 'ko_KR',
                      ])->once()
