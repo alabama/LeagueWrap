@@ -1,1 +1,6 @@
-{"id":266,"key":"Aatrox","name":"Aatrox","title":"Épée des Darkin"}
+{
+  "title": "Épée des Darkin",
+  "name": "Aatrox",
+  "key": "Aatrox",
+  "id": 266
+}

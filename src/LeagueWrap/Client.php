@@ -85,7 +85,9 @@ class Client implements ClientInterface, AsyncClientInterface
             throw new BaseUrlException('BaseUrl was never set. Please call baseUrl($url).');
         }
 
-        $uri = $path.'?'.http_build_query($params);
+        $query = http_build_query($params, null, '&');
+        $query = preg_replace('/%5B(?:[0-9]|[1-9][0-9]+)%5D=/', '=', $query);
+        $uri = $path.'?'.$query;
         $response = $this->guzzle
             ->get($uri, ['timeout'     => $this->timeout,
                          'http_errors' => false, ]);

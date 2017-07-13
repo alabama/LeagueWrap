@@ -20,10 +20,10 @@ class StaticMasteryTest extends PHPUnit_Framework_TestCase
 
     public function testGetMasteryDefault()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                 ->once();
         $this->client->shouldReceive('request')
-                ->with('v1.2/mastery', [
+                ->with('v3/masteries', [
                         'api_key' => 'key',
                 ])->once()
                 ->andReturn(file_get_contents('tests/Json/Static/mastery.json'));
@@ -36,10 +36,10 @@ class StaticMasteryTest extends PHPUnit_Framework_TestCase
 
     public function testArrayAccess()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                 ->once();
         $this->client->shouldReceive('request')
-                ->with('v1.2/mastery', [
+                ->with('v3/masteries', [
                         'api_key' => 'key',
                 ])->once()
                 ->andReturn(file_get_contents('tests/Json/Static/mastery.json'));
@@ -51,10 +51,10 @@ class StaticMasteryTest extends PHPUnit_Framework_TestCase
 
     public function testGetMasteryRegionKR()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                 ->once();
         $this->client->shouldReceive('request')
-                ->with('v1.2/mastery', [
+                ->with('v3/masteries', [
                         'api_key' => 'key',
                         'locale'  => 'ko_KR',
                 ])->once()
@@ -69,10 +69,10 @@ class StaticMasteryTest extends PHPUnit_Framework_TestCase
 
     public function testGetMasteryById()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                 ->once();
         $this->client->shouldReceive('request')
-                ->with('v1.2/mastery/6111', [
+                ->with('v3/masteries/6111', [
                         'api_key' => 'key',
                 ])->once()
                 ->andReturn(file_get_contents('tests/Json/Static/mastery.6111.json'));
@@ -84,12 +84,12 @@ class StaticMasteryTest extends PHPUnit_Framework_TestCase
 
     public function testGetMasteryRank()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                 ->once();
         $this->client->shouldReceive('request')
-                ->with('v1.2/mastery/6111', [
+                ->with('v3/masteries/6111', [
                         'api_key'     => 'key',
-                        'masteryData' => 'ranks',
+                        'tags' => 'ranks',
                 ])->once()
                 ->andReturn(file_get_contents('tests/Json/Static/mastery.6111.ranks.json'));
 
@@ -100,12 +100,12 @@ class StaticMasteryTest extends PHPUnit_Framework_TestCase
 
     public function testGetMasteryAll()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                 ->once();
         $this->client->shouldReceive('request')
-                ->with('v1.2/mastery', [
+                ->with('v3/masteries', [
                         'api_key'         => 'key',
-                        'masteryListData' => 'all',
+                        'tags' => 'all',
                 ])->once()
                 ->andReturn(file_get_contents('tests/Json/Static/mastery.all.json'));
 
@@ -117,11 +117,11 @@ class StaticMasteryTest extends PHPUnit_Framework_TestCase
 
     public function testGetMasteryAsTree()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')->once();
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')->once();
         $this->client->shouldReceive('request')
-                ->with('v1.2/mastery', [
+                ->with('v3/masteries', [
                         'api_key'         => 'key',
-                        'masteryListData' => 'tree',
+                        'tags' => 'tree',
                 ])->once()
                 ->andReturn(file_get_contents('tests/Json/Static/mastery.tree.json'));
         $api = new Api('key', $this->client);
@@ -135,15 +135,18 @@ class StaticMasteryTest extends PHPUnit_Framework_TestCase
 
     public function testGetMasteryAsTreeLegacy()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')->once();
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')->once();
         $this->client->shouldReceive('request')
-                ->with('v1.2/mastery', [
+                ->with('v3/masteries', [
+                        'version'         => '4.7.8',
                         'api_key'         => 'key',
-                        'masteryListData' => 'all',
+                        'tags'            => 'all',
                 ])->once()
                 ->andReturn(file_get_contents('tests/Json/Static/mastery.2015.all.json'));
         $api = new Api('key', $this->client);
-        $masteries = $api->staticData()->getMasteries('all');
+        $oStaticData = $api->staticData();
+        $oStaticData->setDDversion('4.7.8');
+        $masteries = $oStaticData->getMasteries('all');
         $tree = $masteries->tree;
         $this->assertInstanceOf('\LeagueWrap\Dto\StaticData\MasteryTree', $tree);
         $defenseTree = $tree->Defense;

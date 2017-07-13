@@ -36,6 +36,7 @@ class StaticdataTest extends PHPUnit_Framework_TestCase
 
     public function testAppendId()
     {
+
         $method = $this->getMethod('LeagueWrap\Api\Staticdata', 'appendId');
 
         $api = new Api('key', $this->client);
@@ -54,7 +55,7 @@ class StaticdataTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $staticData = $api->staticData();
 
-        $params = $method->invoke($staticData, '', null, null, 'champData', 'champData');
+        $params = $method->invoke($staticData, '', null, null, 'tags', 'tags');
         $expected = [
         ];
         $this->assertEquals($expected, $params);
@@ -67,9 +68,9 @@ class StaticdataTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $staticData = $api->staticData();
 
-        $params = $method->invoke($staticData, '', null, 'all', 'listData', 'itemData');
+        $params = $method->invoke($staticData, '', null, 'all', 'tags', 'tags');
         $expected = [
-            'listData' => 'all',
+            'tags' => 'all',
         ];
         $this->assertEquals($expected, $params);
     }
@@ -82,8 +83,8 @@ class StaticdataTest extends PHPUnit_Framework_TestCase
         $staticData = $api->staticData();
 
         $data = ['string1', 'string2'];
-        $params = $method->invoke($staticData, '', null, $data, 'listData', 'itemData');
-        $this->assertEquals(['listData' => 'string1,string2'], $params);
+        $params = $method->invoke($staticData, '', null, $data, 'tags', 'tags');
+        $this->assertEquals(['tags' => array('string1', 'string2')], $params);
     }
 
     public function testSetUpParamsDataArraySingleItem()
@@ -94,8 +95,8 @@ class StaticdataTest extends PHPUnit_Framework_TestCase
         $staticData = $api->staticData();
 
         $data = ['string1', 'string2'];
-        $params = $method->invoke($staticData, '', 1, $data, 'listData', 'itemData');
-        $this->assertEquals(['itemData' => 'string1,string2'], $params);
+        $params = $method->invoke($staticData, '', 1, $data, 'tags', 'tags');
+        $this->assertEquals(['tags' => ['string1', 'string2']], $params);
     }
 
     public function testSetUpParamsId()
@@ -105,7 +106,7 @@ class StaticdataTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $staticData = $api->staticData();
 
-        $params = $method->invoke($staticData, '', 1, null, 'listData', 'itemData');
+        $params = $method->invoke($staticData, '', 1, null, 'tags', 'tags');
         $expected = [];
         $this->assertEquals($expected, $params);
     }
@@ -117,9 +118,9 @@ class StaticdataTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $staticData = $api->staticData();
 
-        $params = $method->invoke($staticData, '', 1, 'all', 'listData', 'itemData');
+        $params = $method->invoke($staticData, '', 1, 'all', 'tags', 'tags');
         $expected = [
-            'itemData' => 'all',
+            'tags' => 'all',
         ];
         $this->assertEquals($expected, $params);
     }
@@ -131,10 +132,10 @@ class StaticdataTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $staticData = $api->staticData();
 
-        $params = $method->invoke($staticData, 'champion', null, 'all', 'listData', 'itemData');
+        $params = $method->invoke($staticData, 'champions', null, 'all', 'tags', 'tags');
         $expected = [
             'dataById' => 'true',
-            'listData' => 'all',
+            'tags' => 'all',
         ];
         $this->assertEquals($expected, $params);
     }
@@ -147,10 +148,10 @@ class StaticdataTest extends PHPUnit_Framework_TestCase
         $staticData = $api->staticData();
         $staticData->setLocale('fr_FR');
 
-        $params = $method->invoke($staticData, 'champion', 266, 'tags', 'champData', 'champData');
+        $params = $method->invoke($staticData, 'champions', 266, 'tags', 'tags', 'tags');
         $expected = [
             'locale'    => 'fr_FR',
-            'champData' => 'tags',
+            'tags' => 'tags',
         ];
         $this->assertEquals($expected, $params);
     }

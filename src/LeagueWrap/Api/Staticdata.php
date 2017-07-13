@@ -135,7 +135,7 @@ class Staticdata extends AbstractApi
      */
     public function getChampion($championId, $data = null)
     {
-        $params = $this->setUpParams('champions', $championId, $data, 'champData', 'champData');
+        $params = $this->setUpParams('champions', $championId, $data, 'tags', 'tags');
         $array = $this->makeRequest('champions', $championId, $params);
 
         if ($this->appendId($championId)) {
@@ -168,7 +168,7 @@ class Staticdata extends AbstractApi
      */
     public function getItem($itemId, $data = null)
     {
-        $params = $this->setUpParams('items', $itemId, $data, 'itemListData', 'itemData');
+        $params = $this->setUpParams('items', $itemId, $data, 'tags', 'tags');
         $array = $this->makeRequest('items', $itemId, $params);
 
         if ($this->appendId($itemId)) {
@@ -201,7 +201,7 @@ class Staticdata extends AbstractApi
      */
     public function getMastery($masteryId, $data = null)
     {
-        $params = $this->setUpParams('masteries', $masteryId, $data, 'masteryListData', 'masteryData');
+        $params = $this->setUpParams('masteries', $masteryId, $data, 'tags', 'tags');
         $array = $this->makeRequest('masteries', $masteryId, $params);
 
         if ($this->appendId($masteryId)) {
@@ -234,7 +234,7 @@ class Staticdata extends AbstractApi
      */
     public function getRune($runeId, $data = null)
     {
-        $params = $this->setUpParams('rune', $runeId, $data, 'runeListData', 'runeData');
+        $params = $this->setUpParams('rune', $runeId, $data, 'tags', 'tags');
         $array = $this->makeRequest('runes', $runeId, $params);
 
         if ($this->appendId($runeId)) {
@@ -267,7 +267,7 @@ class Staticdata extends AbstractApi
      */
     public function getSummonerSpell($summonerSpellId, $data = null)
     {
-        $params = $this->setUpParams('summoner-spells', $summonerSpellId, $data, 'spellData', 'spellData');
+        $params = $this->setUpParams('summoner-spells', $summonerSpellId, $data, 'tags', 'tags');
         $array = $this->makeRequest('summoner-spells', $summonerSpellId, $params);
 
         if ($this->appendId($summonerSpellId)) {
@@ -346,16 +346,8 @@ class Staticdata extends AbstractApi
         }
         if (!is_null($data)) {
             if ($this->appendId($requestId)) {
-                if (is_array($data) && !empty($data)) {
-                    $data = implode(',', $data);
-                }
-
                 $params[$itemData] = $data;
             } else {
-                if (is_array($data) && !empty($data)) {
-                    $data = implode(',', $data);
-                }
-
                 $params[$listData] = $data;
             }
         }
@@ -373,9 +365,7 @@ class Staticdata extends AbstractApi
      */
     protected function appendId($requestId)
     {
-        if (!is_null($requestId) &&
-            $requestId != 'all'
-        ) {
+        if (!is_null($requestId) && $requestId != 'all') {
             return true;
         }
 

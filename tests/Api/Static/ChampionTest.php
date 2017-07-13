@@ -20,10 +20,10 @@ class StaticChampionTest extends PHPUnit_Framework_TestCase
 
     public function testGetChampionDefault()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'api_key'  => 'key',
                         'dataById' => 'true',
                      ])->once()
@@ -37,10 +37,10 @@ class StaticChampionTest extends PHPUnit_Framework_TestCase
 
     public function testArrayAccess()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'api_key'  => 'key',
                         'dataById' => 'true',
                      ])->once()
@@ -53,10 +53,10 @@ class StaticChampionTest extends PHPUnit_Framework_TestCase
 
     public function testGetChampionRegionFR()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'api_key'  => 'key',
                         'dataById' => 'true',
                         'locale'   => 'fr_FR',
@@ -72,10 +72,10 @@ class StaticChampionTest extends PHPUnit_Framework_TestCase
 
     public function testGetChampionById()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion/266', [
+                     ->with('v3/champions/266', [
                         'api_key' => 'key',
                         'locale'  => 'fr_FR',
                      ])->once()
@@ -89,30 +89,31 @@ class StaticChampionTest extends PHPUnit_Framework_TestCase
 
     public function testGetChampionByIdTags()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
             ->once();
         $this->client->shouldReceive('request')
-            ->with('v1.2/champion/266', [
+            ->with('v3/champions/266', [
                 'api_key'   => 'key',
-                'champData' => 'tags',
-                'locale'    => 'de_DE',
+                'tags'      => 'tags',
+                'locale'    => 'fr_FR',
             ])->once()
             ->andReturn(file_get_contents('tests/Json/Static/champion.266.fr.tags.json'));
+
         $api = new Api('key', $this->client);
-        $champion = $api->staticData()->setLocale('de_DE')->getChampion(266, 'tags');
+        $champion = $api->staticData()->setLocale('fr_FR')->getChampion(266, 'tags');
         $this->assertContains('Tank', $champion->tags);
     }
 
     public function testGetChampionTags()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'api_key'   => 'key',
                         'dataById'  => 'true',
                         'locale'    => 'fr_FR',
-                        'champData' => 'tags',
+                        'tags'      => 'tags',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/champion.fr.tags.json'));
 
@@ -123,21 +124,39 @@ class StaticChampionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Support', $champion->tags[0]);
     }
 
+    public function testGetChampionMultipleTags()
+    {
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
+            ->once();
+        $this->client->shouldReceive('request')
+            ->with('v3/champions/10', [
+                'api_key'   => 'key',
+                'locale'    => 'fr_FR',
+                'tags'      => array('lore', 'skins', 'spells'),
+            ])->once()
+            ->andReturn(file_get_contents('tests/Json/Static/champion.10.skins.spells.lore.json'));
+
+        $api = new Api('key', $this->client);
+        $champion = $api->staticData()->setLocale('fr_FR')
+            ->getChampion(10, array('lore', 'skins', 'spells'));
+        $this->assertEquals('Divine Blessing', $champion->spells[1]->name);
+    }
+
     public function testGetChampionAll()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/champion', [
+                     ->with('v3/champions', [
                         'api_key'   => 'key',
                         'dataById'  => 'true',
-                        'champData' => 'all',
+                        'tags'      => 'all',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/champion.all.json'));
 
         $api = new Api('key', $this->client);
         $champions = $api->staticData()->getChampions('all');
         $champion = $champions->getChampion(412);
-        $this->assertEquals('beginner_Starter', $champion->recommended[0]->blocks[0]->type);
+        $this->assertEquals('beginner_starter', $champion->recommended[0]->blocks[0]->type);
     }
 }

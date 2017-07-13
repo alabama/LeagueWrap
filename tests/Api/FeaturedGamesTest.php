@@ -20,17 +20,16 @@ class FeaturedGamesTest extends PHPUnit_Framework_TestCase
 
     public function testFeaturedGames()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://na.api.pvp.net/observer-mode/rest/')
-                     ->once()
-                     ->with('https://na.api.pvp.net/observer-mode/rest/');
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/spectator/')
+                     ->once();
         $this->client->shouldReceive('request')
-                     ->with('featured', [
+                     ->with('v3/featured-games', [
                         'api_key' => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/featuredgames.na.json'));
 
         $api = new Api('key', $this->client);
-        $featuredGames = $api->featuredGames()->featuredGames();
-        $this->assertEquals(1718765493, $featuredGames[0]->gameId);
+        $featuredGames = $api->currentGame()->featuredGames();
+        $this->assertEquals(3260844514, $featuredGames[0]->gameId);
     }
 }

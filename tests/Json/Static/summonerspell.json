@@ -1,13 +1,13 @@
 {
   "type": "summoner",
-  "version": "7.13.1",
+  "version": "7.14.1",
   "data": {
     "1": {
       "id": 1,
       "summonerLevel": 6,
       "name": "Cleanse",
       "key": "SummonerBoost",
-      "description": "Removes all disables (excluding suppression) and summoner spell debuffs affecting your champion and lowers the duration of incoming disables by 65% for 3 seconds."
+      "description": "Removes all disables (excluding suppression and airborne) and summoner spell debuffs affecting your champion and lowers the duration of incoming disables by 65% for 3 seconds."
     },
     "3": {
       "id": 3,
@@ -42,7 +42,7 @@
       "summonerLevel": 10,
       "name": "Smite",
       "key": "SummonerSmite",
-      "description": "Deals 390-1000 true damage (depending on champion level) to target epic or large monster or enemy minion. Restores Health based on your maximum life when used against monsters."
+      "description": "Deals 390-1000 true damage (depending on champion level) to target epic, large, or medium monster or enemy minion. Restores Health based on your maximum life when used against monsters."
     },
     "12": {
       "id": 12,

@@ -3,6 +3,7 @@
 namespace LeagueWrap\Api;
 
 use LeagueWrap\Dto\CurrentGame as CurrentGameDto;
+use LeagueWrap\Dto\FeaturedGames as FeaturedGamesDto;
 
 /**
  * Spectator service endpoint.
@@ -15,7 +16,7 @@ class Currentgame extends AbstractApi
      * @var array
      */
     protected $versions = [
-        'v1.0',
+        'v3',
     ];
 
     /**
@@ -49,7 +50,7 @@ class Currentgame extends AbstractApi
      */
     public function getDomain()
     {
-        return $this->getRegion()->getCurrentGameDomain();
+        return "{$this->getRegion()->getStandardizedDomain()}spectator/";
     }
 
     /**
@@ -69,11 +70,29 @@ class Currentgame extends AbstractApi
     public function currentGame($identity)
     {
         $summonerId = $this->extractId($identity);
-        $response = $this->request($summonerId, [], false, false);
+        $response = $this->request("active-games/by-summoner/{$summonerId}");
         $game = $this->attachStaticDataToDto(new CurrentGameDto($response));
 
         $this->attachResponse($identity, $game, 'game');
 
         return $game;
+    }
+
+    /**
+     * Requests all featured games.
+     *
+     * @throws \Exception
+     * @throws \LeagueWrap\Exception\CacheNotFoundException
+     * @throws \LeagueWrap\Exception\RegionException
+     * @throws \LeagueWrap\Response\HttpClientError
+     * @throws \LeagueWrap\Response\HttpServerError
+     *
+     * @return \LeagueWrap\Dto\AbstractDto
+     */
+    public function featuredGames()
+    {
+        $response = $this->request("featured-games");
+
+        return $this->attachStaticDataToDto(new FeaturedGamesDto($response));
     }
 }

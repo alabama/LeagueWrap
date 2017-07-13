@@ -16,7 +16,6 @@ use LeagueWrap\Limit\Limit;
  * @method Api\Champion champion()
  * @method Api\League league()
  * @method Api\Staticdata staticData()
- * @method Api\Stats stats()
  * @method Api\Summoner summoner()
  * @method Api\Team team()
  * @method Api\Currentgame currentGame()

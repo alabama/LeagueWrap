@@ -20,10 +20,10 @@ class StaticRealmTest extends PHPUnit_Framework_TestCase
 
     public function testGetRealmNA()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/realm', [
+                     ->with('v3/realms', [
                         'api_key' => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/realm.json'));
@@ -35,10 +35,10 @@ class StaticRealmTest extends PHPUnit_Framework_TestCase
 
     public function testGetRealmKR()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/kr/')
+        $this->client->shouldReceive('baseUrl')->with('https://kr.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/realm', [
+                     ->with('v3/realms', [
                         'api_key' => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/realm.kr.json'));

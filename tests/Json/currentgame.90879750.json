@@ -1,0 +1,803 @@
+{
+  "gameId": 3260747785,
+  "gameStartTime": 1499850220912,
+  "platformId": "EUW1",
+  "gameMode": "CLASSIC",
+  "mapId": 11,
+  "gameType": "MATCHED_GAME",
+  "gameQueueConfigId": 400,
+  "observers": {
+    "encryptionKey": "aQtZTDCPQQ9ZqiKC8iUwRL5NMp4ND/S1"
+  },
+  "participants": [
+    {
+      "profileIconId": 1629,
+      "championId": 64,
+      "summonerName": "NPTV God Fist",
+      "runes": [
+        {
+          "count": 8,
+          "runeId": 5245
+        },
+        {
+          "count": 1,
+          "runeId": 5251
+        },
+        {
+          "count": 4,
+          "runeId": 5277
+        },
+        {
+          "count": 5,
+          "runeId": 5289
+        },
+        {
+          "count": 9,
+          "runeId": 5316
+        },
+        {
+          "count": 3,
+          "runeId": 5337
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6111,
+          "rank": 5
+        },
+        {
+          "masteryId": 6121,
+          "rank": 1
+        },
+        {
+          "masteryId": 6134,
+          "rank": 5
+        },
+        {
+          "masteryId": 6142,
+          "rank": 1
+        },
+        {
+          "masteryId": 6312,
+          "rank": 5
+        },
+        {
+          "masteryId": 6321,
+          "rank": 1
+        },
+        {
+          "masteryId": 6331,
+          "rank": 5
+        },
+        {
+          "masteryId": 6341,
+          "rank": 1
+        },
+        {
+          "masteryId": 6351,
+          "rank": 5
+        },
+        {
+          "masteryId": 6361,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 11,
+      "teamId": 100,
+      "spell1Id": 4,
+      "summonerId": 90297095
+    },
+    {
+      "profileIconId": 2082,
+      "championId": 90,
+      "summonerName": "Diarmuid Ua Dyna",
+      "runes": [
+        {
+          "count": 9,
+          "runeId": 5151
+        },
+        {
+          "count": 9,
+          "runeId": 5175
+        },
+        {
+          "count": 9,
+          "runeId": 5195
+        },
+        {
+          "count": 3,
+          "runeId": 5235
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6114,
+          "rank": 5
+        },
+        {
+          "masteryId": 6122,
+          "rank": 1
+        },
+        {
+          "masteryId": 6131,
+          "rank": 1
+        },
+        {
+          "masteryId": 6134,
+          "rank": 4
+        },
+        {
+          "masteryId": 6143,
+          "rank": 1
+        },
+        {
+          "masteryId": 6154,
+          "rank": 5
+        },
+        {
+          "masteryId": 6164,
+          "rank": 1
+        },
+        {
+          "masteryId": 6312,
+          "rank": 5
+        },
+        {
+          "masteryId": 6322,
+          "rank": 1
+        },
+        {
+          "masteryId": 6331,
+          "rank": 5
+        },
+        {
+          "masteryId": 6343,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 12,
+      "teamId": 100,
+      "spell1Id": 4,
+      "summonerId": 100098790
+    },
+    {
+      "profileIconId": 1637,
+      "championId": 43,
+      "summonerName": "Poseıdown",
+      "runes": [
+        {
+          "count": 9,
+          "runeId": 5273
+        },
+        {
+          "count": 9,
+          "runeId": 5289
+        },
+        {
+          "count": 9,
+          "runeId": 5317
+        },
+        {
+          "count": 3,
+          "runeId": 5357
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6114,
+          "rank": 5
+        },
+        {
+          "masteryId": 6121,
+          "rank": 1
+        },
+        {
+          "masteryId": 6131,
+          "rank": 5
+        },
+        {
+          "masteryId": 6142,
+          "rank": 1
+        },
+        {
+          "masteryId": 6312,
+          "rank": 5
+        },
+        {
+          "masteryId": 6323,
+          "rank": 1
+        },
+        {
+          "masteryId": 6331,
+          "rank": 5
+        },
+        {
+          "masteryId": 6343,
+          "rank": 1
+        },
+        {
+          "masteryId": 6351,
+          "rank": 5
+        },
+        {
+          "masteryId": 6362,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 4,
+      "teamId": 100,
+      "spell1Id": 3,
+      "summonerId": 85298040
+    },
+    {
+      "profileIconId": 2085,
+      "championId": 236,
+      "summonerName": "FlashKickPênta",
+      "runes": [
+        {
+          "count": 9,
+          "runeId": 5245
+        },
+        {
+          "count": 9,
+          "runeId": 5289
+        },
+        {
+          "count": 9,
+          "runeId": 5317
+        },
+        {
+          "count": 3,
+          "runeId": 5337
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6111,
+          "rank": 5
+        },
+        {
+          "masteryId": 6121,
+          "rank": 1
+        },
+        {
+          "masteryId": 6131,
+          "rank": 5
+        },
+        {
+          "masteryId": 6143,
+          "rank": 1
+        },
+        {
+          "masteryId": 6151,
+          "rank": 5
+        },
+        {
+          "masteryId": 6162,
+          "rank": 1
+        },
+        {
+          "masteryId": 6211,
+          "rank": 5
+        },
+        {
+          "masteryId": 6223,
+          "rank": 1
+        },
+        {
+          "masteryId": 6232,
+          "rank": 5
+        },
+        {
+          "masteryId": 6243,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 7,
+      "teamId": 100,
+      "spell1Id": 4,
+      "summonerId": 95099409
+    },
+    {
+      "profileIconId": 1670,
+      "championId": 163,
+      "summonerName": "KdenQseje",
+      "runes": [
+        {
+          "count": 9,
+          "runeId": 5247
+        },
+        {
+          "count": 9,
+          "runeId": 5289
+        },
+        {
+          "count": 9,
+          "runeId": 5317
+        },
+        {
+          "count": 3,
+          "runeId": 5337
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6114,
+          "rank": 5
+        },
+        {
+          "masteryId": 6121,
+          "rank": 1
+        },
+        {
+          "masteryId": 6134,
+          "rank": 5
+        },
+        {
+          "masteryId": 6141,
+          "rank": 1
+        },
+        {
+          "masteryId": 6312,
+          "rank": 5
+        },
+        {
+          "masteryId": 6323,
+          "rank": 1
+        },
+        {
+          "masteryId": 6331,
+          "rank": 5
+        },
+        {
+          "masteryId": 6343,
+          "rank": 1
+        },
+        {
+          "masteryId": 6352,
+          "rank": 5
+        },
+        {
+          "masteryId": 6362,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 14,
+      "teamId": 100,
+      "spell1Id": 4,
+      "summonerId": 96116977
+    },
+    {
+      "profileIconId": 1642,
+      "championId": 67,
+      "summonerName": "Fay108",
+      "runes": [
+        {
+          "count": 8,
+          "runeId": 5245
+        },
+        {
+          "count": 1,
+          "runeId": 5247
+        },
+        {
+          "count": 5,
+          "runeId": 5277
+        },
+        {
+          "count": 4,
+          "runeId": 5289
+        },
+        {
+          "count": 9,
+          "runeId": 5317
+        },
+        {
+          "count": 3,
+          "runeId": 5337
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6111,
+          "rank": 5
+        },
+        {
+          "masteryId": 6122,
+          "rank": 1
+        },
+        {
+          "masteryId": 6131,
+          "rank": 5
+        },
+        {
+          "masteryId": 6141,
+          "rank": 1
+        },
+        {
+          "masteryId": 6151,
+          "rank": 5
+        },
+        {
+          "masteryId": 6162,
+          "rank": 1
+        },
+        {
+          "masteryId": 6311,
+          "rank": 5
+        },
+        {
+          "masteryId": 6322,
+          "rank": 1
+        },
+        {
+          "masteryId": 6331,
+          "rank": 5
+        },
+        {
+          "masteryId": 6343,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 4,
+      "teamId": 200,
+      "spell1Id": 7,
+      "summonerId": 66172196
+    },
+    {
+      "profileIconId": 1153,
+      "championId": 201,
+      "summonerName": "Teronyu",
+      "runes": [
+        {
+          "count": 9,
+          "runeId": 5273
+        },
+        {
+          "count": 3,
+          "runeId": 5289
+        },
+        {
+          "count": 6,
+          "runeId": 5296
+        },
+        {
+          "count": 3,
+          "runeId": 5316
+        },
+        {
+          "count": 3,
+          "runeId": 5357
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6211,
+          "rank": 5
+        },
+        {
+          "masteryId": 6223,
+          "rank": 1
+        },
+        {
+          "masteryId": 6232,
+          "rank": 5
+        },
+        {
+          "masteryId": 6241,
+          "rank": 1
+        },
+        {
+          "masteryId": 6252,
+          "rank": 5
+        },
+        {
+          "masteryId": 6263,
+          "rank": 1
+        },
+        {
+          "masteryId": 6311,
+          "rank": 5
+        },
+        {
+          "masteryId": 6322,
+          "rank": 1
+        },
+        {
+          "masteryId": 6332,
+          "rank": 5
+        },
+        {
+          "masteryId": 6342,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 4,
+      "teamId": 200,
+      "spell1Id": 3,
+      "summonerId": 90879750
+    },
+    {
+      "profileIconId": 1225,
+      "championId": 101,
+      "summonerName": "Gotta Ketchum ",
+      "runes": [
+        {
+          "count": 6,
+          "runeId": 5245
+        },
+        {
+          "count": 3,
+          "runeId": 5273
+        },
+        {
+          "count": 9,
+          "runeId": 5289
+        },
+        {
+          "count": 4,
+          "runeId": 5316
+        },
+        {
+          "count": 5,
+          "runeId": 5317
+        },
+        {
+          "count": 3,
+          "runeId": 5357
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6114,
+          "rank": 5
+        },
+        {
+          "masteryId": 6122,
+          "rank": 1
+        },
+        {
+          "masteryId": 6134,
+          "rank": 5
+        },
+        {
+          "masteryId": 6141,
+          "rank": 1
+        },
+        {
+          "masteryId": 6312,
+          "rank": 5
+        },
+        {
+          "masteryId": 6322,
+          "rank": 1
+        },
+        {
+          "masteryId": 6331,
+          "rank": 3
+        },
+        {
+          "masteryId": 6332,
+          "rank": 2
+        },
+        {
+          "masteryId": 6343,
+          "rank": 1
+        },
+        {
+          "masteryId": 6352,
+          "rank": 5
+        },
+        {
+          "masteryId": 6362,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 21,
+      "teamId": 200,
+      "spell1Id": 4,
+      "summonerId": 73320746
+    },
+    {
+      "profileIconId": 1213,
+      "championId": 83,
+      "summonerName": "enrikultima",
+      "runes": [
+        {
+          "count": 9,
+          "runeId": 5245
+        },
+        {
+          "count": 9,
+          "runeId": 5289
+        },
+        {
+          "count": 9,
+          "runeId": 5317
+        },
+        {
+          "count": 3,
+          "runeId": 5335
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6111,
+          "rank": 5
+        },
+        {
+          "masteryId": 6121,
+          "rank": 1
+        },
+        {
+          "masteryId": 6131,
+          "rank": 5
+        },
+        {
+          "masteryId": 6143,
+          "rank": 1
+        },
+        {
+          "masteryId": 6151,
+          "rank": 5
+        },
+        {
+          "masteryId": 6162,
+          "rank": 1
+        },
+        {
+          "masteryId": 6212,
+          "rank": 5
+        },
+        {
+          "masteryId": 6222,
+          "rank": 1
+        },
+        {
+          "masteryId": 6231,
+          "rank": 5
+        },
+        {
+          "masteryId": 6243,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 4,
+      "teamId": 200,
+      "spell1Id": 12,
+      "summonerId": 26149273
+    },
+    {
+      "profileIconId": 23,
+      "championId": 131,
+      "summonerName": "Estafexa",
+      "runes": [
+        {
+          "count": 9,
+          "runeId": 5273
+        },
+        {
+          "count": 9,
+          "runeId": 5289
+        },
+        {
+          "count": 9,
+          "runeId": 5317
+        },
+        {
+          "count": 3,
+          "runeId": 5357
+        }
+      ],
+      "bot": false,
+      "masteries": [
+        {
+          "masteryId": 6114,
+          "rank": 5
+        },
+        {
+          "masteryId": 6122,
+          "rank": 1
+        },
+        {
+          "masteryId": 6134,
+          "rank": 5
+        },
+        {
+          "masteryId": 6142,
+          "rank": 1
+        },
+        {
+          "masteryId": 6312,
+          "rank": 5
+        },
+        {
+          "masteryId": 6321,
+          "rank": 1
+        },
+        {
+          "masteryId": 6332,
+          "rank": 5
+        },
+        {
+          "masteryId": 6341,
+          "rank": 1
+        },
+        {
+          "masteryId": 6351,
+          "rank": 5
+        },
+        {
+          "masteryId": 6362,
+          "rank": 1
+        }
+      ],
+      "spell2Id": 4,
+      "teamId": 200,
+      "spell1Id": 11,
+      "summonerId": 69919925
+    }
+  ],
+  "gameLength": 213,
+  "bannedChampions": [
+    {
+      "teamId": 100,
+      "championId": 114,
+      "pickTurn": 1
+    },
+    {
+      "teamId": 100,
+      "championId": 164,
+      "pickTurn": 2
+    },
+    {
+      "teamId": 100,
+      "championId": 154,
+      "pickTurn": 3
+    },
+    {
+      "teamId": 100,
+      "championId": 119,
+      "pickTurn": 4
+    },
+    {
+      "teamId": 100,
+      "championId": 89,
+      "pickTurn": 5
+    },
+    {
+      "teamId": 200,
+      "championId": 157,
+      "pickTurn": 6
+    },
+    {
+      "teamId": 200,
+      "championId": 122,
+      "pickTurn": 7
+    },
+    {
+      "teamId": 200,
+      "championId": 238,
+      "pickTurn": 8
+    },
+    {
+      "teamId": 200,
+      "championId": 27,
+      "pickTurn": 9
+    },
+    {
+      "teamId": 200,
+      "championId": 24,
+      "pickTurn": 10
+    }
+  ]
+}

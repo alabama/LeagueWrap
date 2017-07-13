@@ -1,1 +1,6 @@
-{"id":1051,"name":"Brawler's Gloves","description":"<stats>+8% Critical Strike Chance</stats>","plaintext":"Slightly increases Critical Strike Chance"}
+{
+  "plaintext": "Slightly increases Critical Strike Chance",
+  "id": 1051,
+  "name": "Brawler's Gloves",
+  "description": "<stats>+10% Critical Strike Chance</stats>"
+}

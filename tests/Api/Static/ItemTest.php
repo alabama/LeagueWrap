@@ -20,10 +20,10 @@ class StaticItemTest extends PHPUnit_Framework_TestCase
 
     public function testGetItemDefault()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/item', [
+                     ->with('v3/items', [
                         'api_key' => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/items.json'));
@@ -36,10 +36,10 @@ class StaticItemTest extends PHPUnit_Framework_TestCase
 
     public function testArrayAccess()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/item', [
+                     ->with('v3/items', [
                         'api_key' => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/items.json'));
@@ -51,10 +51,10 @@ class StaticItemTest extends PHPUnit_Framework_TestCase
 
     public function testGetItemRegionKR()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/item', [
+                     ->with('v3/items', [
                         'api_key' => 'key',
                         'locale'  => 'ko_KR',
                      ])->once()
@@ -69,10 +69,10 @@ class StaticItemTest extends PHPUnit_Framework_TestCase
 
     public function testGetItemById()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/item/1051', [
+                     ->with('v3/items/1051', [
                         'api_key' => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/item.1051.json'));
@@ -84,12 +84,12 @@ class StaticItemTest extends PHPUnit_Framework_TestCase
 
     public function testGetItemGold()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/item/1051', [
+                     ->with('v3/items/1051', [
                         'api_key'  => 'key',
-                        'itemData' => 'gold',
+                        'tags' => 'gold',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/item.1051.gold.json'));
         $api = new Api('key', $this->client);
@@ -99,12 +99,12 @@ class StaticItemTest extends PHPUnit_Framework_TestCase
 
     public function testGetItemAll()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/item', [
-                        'api_key'      => 'key',
-                        'itemListData' => 'all',
+                     ->with('v3/items', [
+                        'api_key'       => 'key',
+                        'tags'          => 'all'
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/items.all.json'));
 
@@ -116,18 +116,18 @@ class StaticItemTest extends PHPUnit_Framework_TestCase
 
     public function testGetItemArray()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/item', [
+                     ->with('v3/items', [
                         'api_key'      => 'key',
-                        'itemListData' => 'gold,image',
+                        'tags' => array('gold','image')
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/items.gold.image.json'));
 
         $api = new Api('key', $this->client);
         $items = $api->staticData()->getItems(['gold', 'image']);
         $item = $items->getItem(1042);
-        $this->assertEquals(450, $item->gold->total);
+        $this->assertEquals(300, $item->gold->total);
     }
 }

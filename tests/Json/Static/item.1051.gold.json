@@ -1,1 +1,12 @@
-{"id":1051,"name":"Brawler's Gloves","gold":{"base":400,"total":400,"sell":280,"purchasable":true},"description":"<stats>+8% Critical Strike Chance</stats>","plaintext":"Slightly increases Critical Strike Chance"}
+{
+  "plaintext": "Slightly increases Critical Strike Chance",
+  "id": 1051,
+  "name": "Brawler's Gloves",
+  "gold": {
+    "total": 400,
+    "sell": 280,
+    "base": 400,
+    "purchasable": true
+  },
+  "description": "<stats>+10% Critical Strike Chance</stats>"
+}

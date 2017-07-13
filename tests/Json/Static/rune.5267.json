@@ -1,1 +1,10 @@
-{"id":5267,"name":"Greater Mark of Ability Power","description":"+0.59 ability power","rune":{"isRune":true,"tier":"3","type":"red"}}
+{
+  "id": 5267,
+  "rune": {
+    "tier": "3",
+    "type": "red",
+    "isRune": true
+  },
+  "name": "Greater Mark of Ability Power",
+  "description": "+0.59 ability power"
+}

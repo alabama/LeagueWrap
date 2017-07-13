@@ -1,1 +1,10 @@
-{"id":266,"key":"Aatrox","name":"Aatrox","title":"Épée des Darkin","tags":["Fighter","Tank"]}
+{
+  "tags": [
+    "Fighter",
+    "Tank"
+  ],
+  "title": "Épée des Darkin",
+  "name": "Aatrox",
+  "key": "Aatrox",
+  "id": 266
+}

@@ -20,10 +20,10 @@ class StaticRuneTest extends PHPUnit_Framework_TestCase
 
     public function testGetRuneDefault()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/rune', [
+                     ->with('v3/runes', [
                         'api_key'  => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/rune.json'));
@@ -36,10 +36,10 @@ class StaticRuneTest extends PHPUnit_Framework_TestCase
 
     public function testArrayAccess()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/rune', [
+                     ->with('v3/runes', [
                         'api_key'  => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/rune.json'));
@@ -51,10 +51,10 @@ class StaticRuneTest extends PHPUnit_Framework_TestCase
 
     public function testGetRuneRegionKR()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/kr/')
+        $this->client->shouldReceive('baseUrl')->with('https://kr.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/rune', [
+                     ->with('v3/runes', [
                         'api_key'  => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/rune.kr.json'));
@@ -68,10 +68,10 @@ class StaticRuneTest extends PHPUnit_Framework_TestCase
 
     public function testGetRuneById()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/rune/5267', [
+                     ->with('v3/runes/5267', [
                         'api_key'  => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/rune.5267.json'));
@@ -83,12 +83,12 @@ class StaticRuneTest extends PHPUnit_Framework_TestCase
 
     public function testGetRuneImage()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/rune/5001', [
+                     ->with('v3/runes/5001', [
                         'api_key'  => 'key',
-                        'runeData' => 'image',
+                        'tags' => 'image',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/rune.5001.image.json'));
 
@@ -99,12 +99,12 @@ class StaticRuneTest extends PHPUnit_Framework_TestCase
 
     public function testGetRuneAll()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/rune', [
+                     ->with('v3/runes', [
                         'api_key'      => 'key',
-                        'runeListData' => 'all',
+                        'tags' => 'all',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/rune.all.json'));
 

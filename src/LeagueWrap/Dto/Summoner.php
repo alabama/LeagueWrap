@@ -68,7 +68,7 @@ class Summoner extends AbstractDto
      *
      * @return League|null
      */
-    public function league($identity)
+    public function league($identity, $queue = "RANKED_SOLO_5x5")
     {
         if (!isset($this->info['leagues'])) {
             // no leagues
@@ -76,6 +76,11 @@ class Summoner extends AbstractDto
         }
         $leagues = $this->info['leagues'];
         foreach ($leagues as $league) {
+            //check if the queue is the right one
+            if(strtolower($league->queue) != strtolower($queue)) {
+                continue;
+            }
+
             if (is_null($league->playerOrTeam)) {
                 // we could not find the player or team in this league
                 continue;

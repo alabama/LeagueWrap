@@ -1,1 +1,125 @@
-{"type":"summoner","version":"4.7.8","data":{"17":{"name":"Garnizon","description":"Dost Kule: 8 saniyeliğine muazzam miktarda yenilenme sağlar. Rakip Kule: Verilen hasarı 8 saniyeliğine %80 azaltır.","summonerLevel":1,"id":17,"key":"SummonerOdinGarrison"},"13":{"name":"Berrak Zihin","description":"Şampiyonunun azami Mana değerinin %40'ını doldurur. Ayrıca, dostlarının azami Mana değerinin %40'ını da doldurur.","summonerLevel":1,"id":13,"key":"SummonerMana"},"14":{"name":"Tutuştur","description":"Hedef rakip birimini tutuşturarak, 5 saniye içinde 70-410 (şampiyon seviyesine bağlı olarak) gerçek hasar verir, hedefin görülmesini sağlar ve bu süre boyunca hedefin aldığı iyileştirme etkilerini azaltır.","summonerLevel":8,"id":14,"key":"SummonerDot"},"11":{"name":"Çarp","description":"Hedeflenen canavara ya da rakip minyona, şampiyonun seviyesine bağlı olarak 390-1000 gerçek hasar verir.","summonerLevel":3,"id":11,"key":"SummonerSmite"},"12":{"name":"Işınlan","description":"3,5 saniye odaklandıktan sonra, şampiyonunu hedef alınan dost minyon, kule ya da toteme ışınlar.","summonerLevel":6,"id":12,"key":"SummonerTeleport"},"21":{"name":"Bariyer","description":"Şampiyonunu 2 saniyeliğine (şampiyonun seviyesine bağlı olarak) 115-455 hasardan korur.","summonerLevel":6,"id":21,"key":"SummonerBarrier"},"3":{"name":"Bitkinlik","description":"Hedef şampiyonu bitkin düşürerek, 2,5 saniyeliğine Hareket Hızı ile Saldırı Hızını %30 azaltır ve bu süre boyunca hedefin verdiği hasarı %50 azaltır.","summonerLevel":8,"id":3,"key":"SummonerExhaust"},"2":{"name":"Durugörü","description":"Haritanın küçük bir bölümünü 5 saniyeliğine takımına görünür kılar.","summonerLevel":10,"id":2,"key":"SummonerClairvoyance"},"1":{"name":"Arındır","description":"Şampiyonunu etkileyen bütün engelleme ile sihirdar büyüsü dezavantajlarını ortadan kaldırır ve alınan engelleme etkilerinin süresini 3 saniyeliğine %65 azaltır.","summonerLevel":2,"id":1,"key":"SummonerBoost"},"10":{"name":"Dirilt","description":"Şampiyonunu hemen takımına ait Başlangıç Platformunda diriltir ve Hareket Hızını kısa süreliğine artırır. ","summonerLevel":1,"id":10,"key":"SummonerRevive"},"7":{"name":"Şifa","description":"Şampiyonunun ve hedef alınan dost bir şampiyonun Can değerini (şampiyon seviyesine bağlı olarak) 95-475 arası yeniler ve 2 saniyeliğine %30 Hareket Hızı verir. Yakın zamanda Şifa sihirdar büyüsünden etkilenen birimlerde bu iyileştirme etkisi yarı yarıya azalır. ","summonerLevel":1,"id":7,"key":"SummonerHeal"},"6":{"name":"Hayalet","description":"Şampiyonun 10 saniyeliğine birimlerin içinden geçer ve Hareket Hızı %27 artar.","summonerLevel":1,"id":6,"key":"SummonerHaste"},"4":{"name":"Sıçra","description":"Şampiyonunun, imlecinin doğrultusunda, kısa bir mesafe ışınlanmasını sağlar.","summonerLevel":12,"id":4,"key":"SummonerFlash"}}}
+{
+  "type": "summoner",
+  "version": "7.14.1",
+  "data": {
+    "1": {
+      "id": 1,
+      "summonerLevel": 6,
+      "name": "Arındır",
+      "key": "SummonerBoost",
+      "description": "Şampiyonunu etkileyen (sindirme ve havaya savrulma hariç) bütün engelleme ile sihirdar büyüsü dezavantajlarını ortadan kaldırır ve alınan engelleme etkilerinin süresini 3 saniyeliğine %65 azaltır."
+    },
+    "3": {
+      "id": 3,
+      "summonerLevel": 4,
+      "name": "Bitkinlik",
+      "key": "SummonerExhaust",
+      "description": "Hedef rakip şampiyonu bitkin düşürerek 2,5 saniyeliğine rakibin hareket hızını %30, verdiği hasarı %40 azaltır."
+    },
+    "4": {
+      "id": 4,
+      "summonerLevel": 8,
+      "name": "Sıçra",
+      "key": "SummonerFlash",
+      "description": "Şampiyonunun, imlecinin doğrultusunda, kısa bir mesafe ışınlanmasını sağlar."
+    },
+    "6": {
+      "id": 6,
+      "summonerLevel": 1,
+      "name": "Hayalet",
+      "key": "SummonerHaste",
+      "description": "Şampiyonun hız artışı elde eder ve 10 saniye boyunca birimlerin içinden geçebilir. Şampiyonun 2 saniye hızlandıktan sonra şampiyon seviyesine bağlı olarak en fazla %28-45 Hareket Hızı kazanır."
+    },
+    "7": {
+      "id": 7,
+      "summonerLevel": 1,
+      "name": "Şifa",
+      "key": "SummonerHeal",
+      "description": "Şampiyonunun ve hedef alınan dost bir şampiyonun Can değerini (şampiyon seviyesine bağlı olarak) 90-345 arası yeniler ve 1 saniyeliğine %30 Hareket Hızı verir. Yakın zamanda sihirdar büyüsü Şifa'dan etkilenen birimlerde bu iyileştirme etkisi yarı yarıya azalır. "
+    },
+    "11": {
+      "id": 11,
+      "summonerLevel": 10,
+      "name": "Çarp",
+      "key": "SummonerSmite",
+      "description": "Hedeflenen destansı, büyük veya orta canavara ya da rakip minyona, şampiyonun seviyesine bağlı olarak 390-1000 gerçek hasar verir. Canavarlara karşı kullanıldığında kullanan şampiyonun azami can miktarına bağlı olarak can yeniler."
+    },
+    "12": {
+      "id": 12,
+      "summonerLevel": 6,
+      "name": "Işınlan",
+      "key": "SummonerTeleport",
+      "description": "4,5 saniye odaklandıktan sonra şampiyonunu hedef alınan dost yapı, minyon ya da toteme ışınlar."
+    },
+    "13": {
+      "id": 13,
+      "summonerLevel": 1,
+      "name": "Berrak Zihin",
+      "key": "SummonerMana",
+      "description": "Şampiyonunun azami Mana değerinin %50'sini yeniler. Ayrıca, takım arkadaşlarının azami Mana değerinin %25'ini de doldurur."
+    },
+    "14": {
+      "id": 14,
+      "summonerLevel": 10,
+      "name": "Tutuştur",
+      "key": "SummonerDot",
+      "description": "Hedef rakip birimini tutuşturarak, 5 saniye içinde 70-410 (şampiyon seviyesine bağlı olarak) gerçek hasar verir, hedefin görülmesini sağlar ve bu süre boyunca hedefin aldığı iyileştirme etkilerini azaltır."
+    },
+    "21": {
+      "id": 21,
+      "summonerLevel": 4,
+      "name": "Bariyer",
+      "key": "SummonerBarrier",
+      "description": "Şampiyonunu 2 saniyeliğine (şampiyonun seviyesine bağlı olarak) 115-455 hasardan korur."
+    },
+    "30": {
+      "id": 30,
+      "summonerLevel": 1,
+      "name": "Kralın Yanına!",
+      "key": "SummonerPoroRecall",
+      "description": "Hızlıca Poro Kralı'nın yanına gidersin."
+    },
+    "31": {
+      "id": 31,
+      "summonerLevel": 1,
+      "name": "Poro Atışı",
+      "key": "SummonerPoroThrow",
+      "description": "Rakiplerine bir Poro atarsın. İsabet ederse, hemen ardından isabet ettiği hedefin yanına hızla gidebilirsin."
+    },
+    "32": {
+      "id": 32,
+      "summonerLevel": 1,
+      "name": "Tuttur",
+      "key": "SummonerSnowball",
+      "description": "Rakiplerine düz bir hat üzerinde kartopu fırlatır. Kartopu isabet ettiği rakibi işaretler ve Gerçek Görüş sağlar. Hemen ardından işaretli hedefin yanına hızla gidebilirsin."
+    },
+    "33": {
+      "id": 33,
+      "summonerLevel": 1,
+      "name": "Merkez Kuşatması: Kuşatma Silahı Yuvası",
+      "key": "SummonerSiegeChampSelect1",
+      "description": "Merkez Kuşatması'nda, Sihirdar Büyüleri'nin yerini kuşatma silahı yuvaları alır. Kristal Parçacıklarını harcayarak dükkândan tek kullanımlık kuşatma silahları satın al ve ardından Sihirdar Büyüsü tuşlarını kullanarak bunları etkinleştir!"
+    },
+    "34": {
+      "id": 34,
+      "summonerLevel": 1,
+      "name": "Merkez Kuşatması: Kuşatma Silahı Yuvası",
+      "key": "SummonerSiegeChampSelect2",
+      "description": "Merkez Kuşatması'nda, Sihirdar Büyüleri'nin yerini kuşatma silahı yuvaları alır. Kristal Parçacıklarını harcayarak dükkândan tek kullanımlık kuşatma silahları satın al ve ardından Sihirdar Büyüsü tuşlarını kullanarak bunları etkinleştir!"
+    },
+    "35": {
+      "id": 35,
+      "summonerLevel": 1,
+      "name": "Sihirdar Büyüleri Devre Dışı",
+      "key": "SummonerDarkStarChampSelect1",
+      "description": "Sihirdar büyüleri bu modda devre dışı."
+    },
+    "36": {
+      "id": 36,
+      "summonerLevel": 1,
+      "name": "Sihirdar Büyüleri Devre Dışı",
+      "key": "SummonerDarkStarChampSelect2",
+      "description": "Sihirdar büyüleri bu modda devre dışı."
+    }
+  }
+}

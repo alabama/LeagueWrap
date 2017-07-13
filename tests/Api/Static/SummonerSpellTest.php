@@ -20,10 +20,10 @@ class StaticSummonerSpellTest extends PHPUnit_Framework_TestCase
 
     public function testGetSummonerSpellDefault()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/summoner-spell', [
+                     ->with('v3/summoner-spells', [
                         'api_key'  => 'key',
                         'dataById' => 'true',
                      ])->once()
@@ -37,10 +37,10 @@ class StaticSummonerSpellTest extends PHPUnit_Framework_TestCase
 
     public function testArrayAccess()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/summoner-spell', [
+                     ->with('v3/summoner-spells', [
                         'api_key'  => 'key',
                         'dataById' => 'true',
                      ])->once()
@@ -53,10 +53,10 @@ class StaticSummonerSpellTest extends PHPUnit_Framework_TestCase
 
     public function testGetSummonerSpellRegionTR()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/tr/')
+        $this->client->shouldReceive('baseUrl')->with('https://tr1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/summoner-spell', [
+                     ->with('v3/summoner-spells', [
                         'api_key'  => 'key',
                         'dataById' => 'true',
                      ])->once()
@@ -67,32 +67,33 @@ class StaticSummonerSpellTest extends PHPUnit_Framework_TestCase
                       ->staticData()->getSummonerSpells();
         $spell = $spells->getSpell(6);
         $this->assertEquals('Hayalet', $spell->name);
+        $this->assertEquals("SummonerHaste", $spell->key);
     }
 
     public function testGetSummonerSpellById()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/summoner-spell/1', [
+                     ->with('v3/summoner-spells/1', [
                         'api_key'  => 'key',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/summonerspell.1.json'));
 
         $api = new Api('key', $this->client);
         $spell = $api->staticData()->getSummonerSpell(1);
-        $this->assertEquals('2', $spell->summonerLevel);
+        $this->assertEquals('6', $spell->summonerLevel);
     }
 
     public function testGetSummonerSpellAll()
     {
-        $this->client->shouldReceive('baseUrl')->with('https://global.api.pvp.net/api/lol/static-data/na/')
+        $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/static-data/')
                      ->once();
         $this->client->shouldReceive('request')
-                     ->with('v1.2/summoner-spell', [
+                     ->with('v3/summoner-spells', [
                         'api_key'   => 'key',
                         'dataById'  => 'true',
-                        'spellData' => 'all',
+                        'tags' => 'all',
                      ])->once()
                      ->andReturn(file_get_contents('tests/Json/Static/summonerspell.all.json'));
 

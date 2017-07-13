@@ -1,1 +1,19 @@
-{"id":5001,"name":"Lesser Mark of Attack Damage","description":"+0.53 attack damage","image":{"full":"r_1_1.png","sprite":"rune0.png","group":"rune","x":96,"y":0,"w":48,"h":48},"rune":{"isRune":true,"tier":"1","type":"red"}}
+{
+  "id": 5001,
+  "image": {
+    "full": "r_1_1.png",
+    "group": "rune",
+    "sprite": "rune0.png",
+    "h": 48,
+    "w": 48,
+    "y": 0,
+    "x": 96
+  },
+  "rune": {
+    "tier": "1",
+    "type": "red",
+    "isRune": true
+  },
+  "name": "Lesser Mark of Attack Damage",
+  "description": "+0.53 attack damage"
+}

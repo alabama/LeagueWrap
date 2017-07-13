@@ -1,1 +1,7 @@
-{"name":"Cleanse","description":"Removes all disables and summoner spell debuffs affecting your champion and lowers the duration of incoming disables by 65% for 3 seconds.","summonerLevel":2,"id":1,"key":"SummonerBoost"}
+{
+  "id": 1,
+  "summonerLevel": 6,
+  "name": "Cleanse",
+  "key": "SummonerBoost",
+  "description": "Removes all disables (excluding suppression and airborne) and summoner spell debuffs affecting your champion and lowers the duration of incoming disables by 65% for 3 seconds."
+}

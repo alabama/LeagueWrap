@@ -1,0 +1,53 @@
+[
+  {
+    "queueType": "RANKED_SOLO_5x5",
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 1,
+      "losses": 0,
+      "target": 2,
+      "progress": "WNN"
+    },
+    "wins": 136,
+    "veteran": true,
+    "losses": 121,
+    "playerOrTeamId": "23240923",
+    "tier": "GOLD",
+    "playerOrTeamName": "TitouTheKing",
+    "inactive": false,
+    "rank": "III",
+    "freshBlood": false,
+    "leagueName": "Talon's Overlords",
+    "leaguePoints": 100
+  },
+  {
+    "queueType": "RANKED_FLEX_SR",
+    "hotStreak": false,
+    "wins": 24,
+    "veteran": false,
+    "losses": 18,
+    "playerOrTeamId": "23240923",
+    "tier": "GOLD",
+    "playerOrTeamName": "TitouTheKing",
+    "inactive": false,
+    "rank": "V",
+    "freshBlood": true,
+    "leagueName": "Xerath's Marauders",
+    "leaguePoints": 0
+  },
+  {
+    "queueType": "RANKED_FLEX_TT",
+    "hotStreak": false,
+    "wins": 33,
+    "veteran": false,
+    "losses": 22,
+    "playerOrTeamId": "23240923",
+    "tier": "GOLD",
+    "playerOrTeamName": "TitouTheKing",
+    "inactive": false,
+    "rank": "V",
+    "freshBlood": false,
+    "leagueName": "Rumble's Crushers",
+    "leaguePoints": 0
+  }
+]
