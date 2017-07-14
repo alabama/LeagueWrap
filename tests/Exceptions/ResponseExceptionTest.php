@@ -39,14 +39,19 @@ class ResponseExceptionTest extends PHPUnit_Framework_TestCase
     public function testHttp429ExceptionContainsResponse()
     {
         try {
-            $this->simulateWithResponse(new Response('', 429, [
-                'Retry-After' => [
-                    123,
-                ],
-                'X-Rate-Limit-Type' => [
-                    'user',
-                ],
-            ]));
+            $this->simulateWithResponse(
+                new Response('{"status": {"status_code": 429, "message": "Rate limit exceeded"}}',
+                    429,
+                    [
+                        'Retry-After' => [
+                            123,
+                        ],
+                        'X-Rate-Limit-Type' => [
+                            'user',
+                        ],
+                    ]
+                )
+            );
 
             $api = new Api('key', $this->client);
             $api->champion()->selectVersion('v3')->all();
