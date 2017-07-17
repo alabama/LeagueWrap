@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/alabama/LeagueWrap.svg?branch=master)](https://travis-ci.org/alabama/LeagueWrap)
+
+[![Coverage Status](https://coveralls.io/repos/github/alabama/LeagueWrap/badge.svg?branch=master)](https://coveralls.io/github/alabama/LeagueWrap?branch=master)
+
+
+
 LeagueWrap
 ==========
 
