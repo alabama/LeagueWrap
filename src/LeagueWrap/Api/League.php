@@ -89,7 +89,7 @@ class League extends AbstractApi
             $leagues[] = $this->attachStaticDataToDto($league);
         }
 
-        $this->attachResponse($identity, $league, 'leagues');
+        $this->attachResponse($identity, $leagues, 'leagues');
         return $leagues;
     }
 
