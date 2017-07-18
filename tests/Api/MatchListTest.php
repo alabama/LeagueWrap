@@ -49,6 +49,10 @@ class MatchListTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $matchList = $api->matchlist()->matchlist(101444);
         $this->assertTrue($matchList->match(0) instanceof LeagueWrap\Dto\MatchReference);
+        $this->assertEquals(
+            \LeagueWrap\Enum\SeasonEnum::convert(\LeagueWrap\Enum\SeasonEnum::SEASON2015),
+            $matchList->match(2)->seasonName
+        );
     }
 
     public function testListSummoner()
@@ -73,6 +77,10 @@ class MatchListTest extends PHPUnit_Framework_TestCase
         $bakasan = $api->summoner()->selectVersion('v3')->info('bakasan');
         $matchList = $api->matchlist()->matchlist($bakasan);
         $this->assertTrue($bakasan->matchlist->match(0) instanceof LeagueWrap\Dto\MatchReference);
+        $this->assertEquals(
+            \LeagueWrap\Enum\MatchmakingQueueEnum::convert(\LeagueWrap\Enum\MatchmakingQueueEnum::RANKED_SOLO_5x5),
+            $bakasan->matchlist->match(2)->queueType
+        );
     }
 
     public function testListWithParams()
@@ -172,6 +180,10 @@ class MatchListTest extends PHPUnit_Framework_TestCase
         $bakasan = $api->summoner()->selectVersion('v3')->info('bakasan');
         $matchList = $api->matchlist()->recent($bakasan);
         $this->assertTrue($bakasan->recentMatchList(0) instanceof LeagueWrap\Dto\MatchReference);
+        $this->assertEquals(
+            \LeagueWrap\Enum\MatchmakingQueueEnum::convert(\LeagueWrap\Enum\MatchmakingQueueEnum::TEAM_BUILDER_DRAFT_RANKED_5x5),
+            $bakasan->recentMatchList(0)->get("queueType")
+        );
     }
 
     public function testRecentRoleSummoner()
@@ -198,6 +210,7 @@ class MatchListTest extends PHPUnit_Framework_TestCase
 
         $matchReference = $bakasan->recentMatchList(0);
         $this->assertEquals("DUO_SUPPORT", $matchReference->role);
+        $this->assertEquals(\LeagueWrap\Enum\SeasonEnum::convert(\LeagueWrap\Enum\SeasonEnum::SEASON2016), $matchReference->seasonName);
     }
 
     public function testRecentStatsSummonerRaw()

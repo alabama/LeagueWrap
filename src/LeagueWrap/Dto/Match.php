@@ -1,6 +1,8 @@
 <?php
 
 namespace LeagueWrap\Dto;
+use LeagueWrap\Enum\MatchmakingQueueEnum;
+use LeagueWrap\Enum\SeasonEnum;
 
 /**
  * Class Match.
@@ -56,6 +58,13 @@ class Match extends AbstractDto
 
         if (isset($info['timeline'])) {
             $info['timeline'] = new MatchTimeline($info['timeline']);
+        }
+
+        if (isset($info['queueId'])) {
+            $info['queueType'] = MatchmakingQueueEnum::convert($info['queueId']);
+        }
+        if (isset($info['seasonId'])) {
+            $info['seasonName'] = SeasonEnum::convert($info['seasonId']);
         }
 
         parent::__construct($info);

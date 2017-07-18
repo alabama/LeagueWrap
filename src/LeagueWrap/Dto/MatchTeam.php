@@ -24,6 +24,10 @@ class MatchTeam extends AbstractDto
             $info['bans'] = $bans;
         }
 
+        if (isset($info['win'])) {
+            $info['win'] = strtolower($info["win"]) == "win";
+        }
+
         parent::__construct($info);
     }
 

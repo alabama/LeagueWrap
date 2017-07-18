@@ -32,6 +32,8 @@ class ApiMatchTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $match = $api->match()->match(1399898747);
         $this->assertTrue($match instanceof LeagueWrap\Dto\Match);
+        $this->assertEquals("RANKED_SOLO_5x5", $match->get("queueType"));
+        $this->assertEquals("SEASON2014", $match->get("seasonName"));
     }
 
     public function testMatchWithStatic()
@@ -84,6 +86,8 @@ class ApiMatchTest extends PHPUnit_Framework_TestCase
         $api = new Api('key', $this->client);
         $match = $api->match()->match(1399898747);
         $this->assertTrue($match->team(0) instanceof LeagueWrap\Dto\MatchTeam);
+        $this->assertFalse($match->team(0)->win);
+        $this->assertTrue($match->team(1)->win);
     }
 
     public function testBans()
