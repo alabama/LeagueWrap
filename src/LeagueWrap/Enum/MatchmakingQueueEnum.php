@@ -51,4 +51,5 @@ class MatchmakingQueueEnum extends BaseEnum
     const RANKED_FLEX_SR                    = 440; //    Ranked Flex Summoner's Rift games
     const ASSASSINATE_5x5                   = 600; //    Blood Hunt Assassin games
     const DARKSTAR_3x3                      = 610; //    Dark Star games
+    const BOT_TT_3x3_SIMPLE                 = 800; //    Twisted Treeline AI vs AI games
 }
