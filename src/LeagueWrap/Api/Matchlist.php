@@ -112,24 +112,24 @@ class Matchlist extends AbstractApi
 
         if (isset($rankedQueues)) {
             if (is_array($rankedQueues)) {
-                $params['rankedQueues'] = implode(',', $rankedQueues);
+                $params['queue'] = array_values($rankedQueues);
             } else {
-                $params['rankedQueues'] = $rankedQueues;
+                $params['queue'] = $rankedQueues;
             }
         }
         if (isset($seasons)) {
             if (is_array($seasons)) {
-                $params['seasons'] = implode(',', $seasons);
+                $params['season'] = array_values($seasons);
             } else {
-                $params['seasons'] = $seasons;
+                $params['season'] = $seasons;
             }
         }
 
         if (isset($championIds)) {
             if (is_array($championIds)) {
-                $params['championIds'] = implode(',', $championIds);
+                $params['champion'] = array_values($championIds);
             } else {
-                $params['championIds'] = $championIds;
+                $params['champion'] = $championIds;
             }
         }
 

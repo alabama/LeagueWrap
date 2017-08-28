@@ -86,19 +86,19 @@ class MatchListTest extends PHPUnit_Framework_TestCase
     public function testListWithParams()
     {
         $startTime = 1283846202;
-        $endTime = 1283846202 + 1000;
+        $endTime = $startTime + 1000;
         $this->client->shouldReceive('baseUrl')->with('https://na1.api.riotgames.com/lol/match/')
             ->once();
         $this->client->shouldReceive('request')
             ->with('v3/matchlists/by-account/101444', [
-                'api_key'      => 'key',
-                'rankedQueues' => 4,                // => 'RANKED_SOLO_5x5',
-                'seasons'      => 5,                // => 'SEASON2015',
-                'championIds'  => '1,2,3',
-                'beginIndex'   => 1,
-                'endIndex'     => 4,
-                'beginTime'    => $startTime,
-                'endTime'      => $endTime,
+                'api_key'       => 'key',
+                'queue'         => 4,                // => 'RANKED_SOLO_5x5',
+                'season'        => 5,                // => 'SEASON2015',
+                'champion'   => array(1, 2, 3),
+                'beginIndex'    => 1,
+                'endIndex'      => 4,
+                'beginTime'     => $startTime,
+                'endTime'       => $endTime,
             ])->once()
             ->andReturn(file_get_contents('tests/Json/matchlist.accountId.101444.json'));
 
@@ -116,10 +116,10 @@ class MatchListTest extends PHPUnit_Framework_TestCase
         $matchApi = (new Api('key', $this->client))->matchList();
 
         $expected = [
-            'rankedQueues' => 'RANKED_SOLO_5x5,RANKED_TEAM_3x3',
-            'seasons'      => 'SEASON2015',
-            'championIds'  => '1,2,3',
-            'beginIndex'   => 1,
+            'queue'         => array('RANKED_SOLO_5x5', 'RANKED_TEAM_3x3'),
+            'season'        => array('SEASON2015'),
+            'champion'   => array(1, 2, 3),
+            'beginIndex'    => 1,
         ];
 
         $result = $method->invoke($matchApi, ['RANKED_SOLO_5x5', 'RANKED_TEAM_3x3'], ['SEASON2015'], [1, 2, 3], 1);
