@@ -21,11 +21,11 @@ class EnumConstantConverterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("TEAM_BUILDER_RANKED_SOLO", EnumConstantConverter::convert(new MatchmakingQueueEnum, 420));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testConstantNotExist()
     {
-        EnumConstantConverter::convert(new SeasonEnum(), "does-not-exist_for_SURE");
+        $this->assertEquals(
+            EnumConstantConverter::UNKNOWN,
+            EnumConstantConverter::convert(new SeasonEnum(), "does-not-exist_for_SURE")
+        );
     }
 }
