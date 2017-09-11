@@ -7,6 +7,7 @@
  */
 
 use LeagueWrap\Enum\MatchmakingQueueEnum;
+use LeagueWrap\Enum\EnumConstantConverter;
 
 class MatchmakingQueueEnumTest extends PHPUnit_Framework_TestCase
 {
@@ -25,11 +26,8 @@ class MatchmakingQueueEnumTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("RANKED_SOLO_5x5", MatchmakingQueueEnum::convert(MatchmakingQueueEnum::RANKED_SOLO_5x5));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testConstantNotExist()
     {
-        MatchmakingQueueEnum::convert("does-not-exist_for_SURE");
+        $this->assertEquals(EnumConstantConverter::UNKNOWN, MatchmakingQueueEnum::convert("does-not-exist_for_SURE"));
     }
 }
