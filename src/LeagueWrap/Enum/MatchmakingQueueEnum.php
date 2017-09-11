@@ -49,7 +49,17 @@ class MatchmakingQueueEnum extends BaseEnum
     const TEAM_BUILDER_RANKED_SOLO          = 420; //    Ranked Solo games from current season that use Team Builder matchmaking
     const TB_BLIND_SUMMONERS_RIFT_5x5       = 430; //    Normal 5v5 Blind Pick games
     const RANKED_FLEX_SR                    = 440; //    Ranked Flex Summoner's Rift games
+    const ARAM_GAMES                        = 450; //    ARAM games
+    const NORMAL_TT_3x3                     = 460; //    Normal 3v3 Blind Pick Twisted Treeline games
+    const RANKED_FLEX_TT_NEW                = 470; //    Ranked 3v3 Flex Twisted Treeline games
     const ASSASSINATE_5x5                   = 600; //    Blood Hunt Assassin games
     const DARKSTAR_3x3                      = 610; //    Dark Star games
     const BOT_TT_3x3_SIMPLE                 = 800; //    Twisted Treeline AI vs AI games
+    const BOT_TT_3x3_COOP_INTRO             = 810; //    Twisted Treeline Co-op vs. AI Intro Bot games
+    const BOT_TT_3x3_COOP_BEGINNER          = 820; //    Twisted Treeline Co-op vs. AI Beginner Bot games
+    const BOT_SR_5x5_COOP_INTRO             = 830; //    Summoner's Rift Co-op vs. AI Intro Bot games
+    const BOT_SR_5x5_COOP_BEGINNER          = 840; //    Summoner's Rift Co-op vs. AI Beginner Bot games
+    const BOT_SR_5x5_COOP_INTERMEDIATE      = 850; //    Summoner's Rift Co-op vs. AI Intermediate Bot games
+    const STAR_GUARDIAN_NORMAL              = 980; //    Star Guardian Invasion: Normal games
+    const STAR_GUARDIAN_ONSLAUGHT           = 990; //    Star Guardian Invasion: Onslaught games
 }
